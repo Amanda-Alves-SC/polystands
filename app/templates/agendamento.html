@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Agendamento</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/agendamento.css') }}">
+  </head>
+  <body>
+    <div class="faixa">
+        <div class="logo">
+          <img src="{{ url_for('static', filename='img/logo_poly.png') }}">
+        </div>
+        <a href="home"><button class="home">Home</button></a>
+        <a href="agendamento"><button class="agendamento">Agendar</button></a>
+        <a href="consulta"><button class="consulta">Consulta</button></a>
+    </div>
+    <div class="form1">
+        <form  action="/agendamento" id="agendar" method="POST">
+            <h2 class="form-title">Agendar atendimento</h2>
+            <div class="nome_completo">
+                <div class="form-group">
+                <label for="name">Nome</label>
+                <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome">
+                </div>
+                <div class="form-group">
+                    <label for="sobrenome">Sobrenome</label>
+                    <input type="text" class="form-control" id="sobrenome" name="sobrenome" placeholder="Sobrenome">
+                </div>
+            </div>
+            <div class="form-group">
+            <label for="email">Endereço de email</label>
+            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Seu email">
+            <small class="form-text text-muted"></small>
+            </div>
+            <div class='col-md-3'>
+                <div class="form-group">
+                    <label for="data">Data</label>
+                    <!-- Datepicker as text field -->         
+                    <div class="input-group date" data-date-format="dd/mm/yyyy">
+                      <input  type="date" class="form-control" id="data" name="data" placeholder="dd/mm/yyyy">
+                      <div class="input-group-addon" >
+                        <span class="glyphicon glyphicon-th"></span>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="descricao_projeto">Descrição do projeto</label>
+                <textarea class="form-control" type="text" id="descricao_projeto" name="descricao_projeto"  placeholder="descrição"></textarea>
+              </div>
+            <div class="form-group">
+                <label for="dimensao_m2">Dimensão em m2</label>
+                <input type="text" class="form-control" id="dimensao_m2" name="dimensao_m2" placeholder="m2">
+            </div>
+            <div class="form-group_form-check">
+            <input type="checkbox" class="form-check-input" id="aceite_termo" name="aceite_termo">
+            <label class="form-check-label" for="aceite_termo">Aceitar uso de dados</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form> 
+    </div>
+    <script>
+      const mensagemErro = "{{ mensagem_erro }}";  // Variável passada pelo Flask
+      if (mensagemErro) {
+        Swal.fire({
+          title: 'Erro!',
+          text: mensagemErro,
+          icon: 'error',
+          confirmButtonText: 'Tentar Novamente'
+        });
+      }
+  
+      const mensagemSucesso = "{{ mensagem_sucesso }}";  // Variável passada pelo Flask
+      if (mensagemSucesso) {
+        Swal.fire({
+          title: 'Sucesso!',
+          text: mensagemSucesso,
+          icon: 'success',
+          confirmButtonText: 'Ok'
+        });
+      }
+    </script>    
+  </body>
+</html>

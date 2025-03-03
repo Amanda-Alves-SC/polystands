@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Agendamento</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/consulta.css') }}">
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; align-items: center;display: flex;}
+        table { width: 80%; border-collapse: collapse; border-radius: 10px;overflow: hidden; background-color: white;box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);}
+        th, td { padding: 10px; border: 1px; border-color: #8d9c9c}
+        th {  background-color: rgb(255, 140, 0);color: white;font-weight: bold;}
+        td{text-align: left;}
+        tbody {
+        background-color: white;}
+        tr{background-color: white;}
+        .filtros-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 15px;
+    }
+
+    .filtros {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0.1, 0.1, 0.1, 0.1);
+        height: 50px;
+        width: 480px;
+        margin-left: 5px;
+    }
+
+    .searchInput, .startDate, .endDate {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        align-items: center;
+    }
+
+    .searchInput {
+        width: 100px;
+        height: 30px;
+        margin-top: 10px;
+    }
+
+    .startDate, .endDate {
+        width: 100px;
+    }
+
+    .filtrar {
+        background-color: darkorange;
+        color: white;
+        border-radius: 5px;
+        border: none;
+        font-size: 16px;
+        padding: 10px 15px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .filtrar:hover {
+        background-color: #e69500;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="faixa">
+        <div class="logo">
+          <img src="{{ url_for('static', filename='img/logo_poly.png') }}" width="100px" height="70px">
+          <div class="filtros">
+            <input type="text" id="searchInput" class="searchInput" placeholder="Pesquisar..." style="margin-bottom: 10px; padding: 5px;">
+            <input type="date" id="startDate" class="startDate" placeholder="Data Inicial" style="margin: 10px;">
+            <input type="date" id="endDate" class="endDate" placeholder="Data Final" style="margin: 10px;">
+            <button onclick="filtrarTabela()" class="filtrar">Filtrar</button>
+        </div>
+        </div>
+        <a href="home"><button class="home">Home</button></a>
+        <a href="agendamento"><button class="agendamento">Agendar</button></a>
+        <a href="consulta"><button class="consulta">Consulta</button></a>
+    </div>
+
+    <body>
+                <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Sobrenome</th>
+                        <th>Email</th>
+                        <th>Data</th>
+                        <th>Descrição</th>
+                        <th>Dimensão em m2</th>
+                        <th>Permissão de uso de dados</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-agendamentos">
+                    <!-- Os dados serão inseridos aqui pelo JavaScript -->
+                </tbody>
+            </table>
+    
+        <script>
+            async function carregarAgendamentos() {
+                const resposta = await fetch('/api/agendamentos');
+                const agendamentos = await resposta.json();
+                
+                const tabela = document.getElementById('tabela-agendamentos');
+                tabela.innerHTML = '';  // Limpa a tabela antes de preencher
+    
+                agendamentos.forEach(ag => {
+                    const linha = `<tr>
+                        <td>${ag.id}</td>
+                        <td>${ag.nome}</td>
+                        <td>${ag.sobrenome}</td>
+                        <td>${ag.email}</td>
+                        <td>${ag.data}</td>
+                        <td>${ag.descricao_projeto}</td>
+                        <td>${ag.dimensao_m2}</td>
+                        <td>${ag.aceite_termo}</td>
+
+                    </tr>`;
+                    tabela.innerHTML += linha;
+                });
+            }
+    
+            carregarAgendamentos();
+        </script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+    carregarAgendamentos();
+
+    // Filtro de pesquisa por texto
+    document.getElementById("searchInput").addEventListener("keyup", function() {
+        filtrarTabela();
+    });
+
+    // Filtro de datas
+    document.getElementById("startDate").addEventListener("change", function() {
+        filtrarTabela();
+    });
+
+    document.getElementById("endDate").addEventListener("change", function() {
+        filtrarTabela();
+    });
+});
+
+async function carregarAgendamentos() {
+    const resposta = await fetch('/api/agendamentos');
+    const agendamentos = await resposta.json();
+    
+    const tabela = document.getElementById('tabela-agendamentos');
+    tabela.innerHTML = '';  
+
+    agendamentos.forEach(ag => {
+        const linha = `<tr>
+            <td>${ag.id}</td>
+            <td>${ag.nome}</td>
+            <td>${ag.sobrenome}</td>
+            <td>${ag.email}</td>
+            <td class="data">${ag.data}</td>  <!-- Importante: Classe 'data' -->
+            <td>${ag.descricao_projeto}</td>
+            <td>${ag.dimensao_m2}</td>
+            <td>${ag.aceite_termo}</td>
+        </tr>`;
+        tabela.innerHTML += linha;
+    });
+}
+
+function filtrarTabela() {
+    const termoPesquisa = document.getElementById("searchInput").value.toLowerCase();
+    const dataInicial = document.getElementById("startDate").value;
+    const dataFinal = document.getElementById("endDate").value;
+
+    const linhas = document.querySelectorAll("#tabela-agendamentos tr");
+
+    linhas.forEach(linha => {
+        const textoLinha = linha.textContent.toLowerCase();
+        const dataTexto = linha.querySelector(".data").textContent.trim();
+        const dataLinha = formatarData(dataTexto); // Converte para YYYY-MM-DD
+
+        const atendeTexto = textoLinha.includes(termoPesquisa);
+        const atendeData = verificarData(dataLinha, dataInicial, dataFinal);
+
+        linha.style.display = (atendeTexto && atendeData) ? "" : "none";
+    });
+}
+
+function formatarData(data) {
+    const partes = data.split("/");
+    return partes.length === 3 ? `${partes[2]}-${partes[1]}-${partes[0]}` : ""; // Formato YYYY-MM-DD
+}
+
+function verificarData(dataLinha, inicio, fim) {
+    if (!inicio && !fim) return true; // Sem filtro de data
+    if (!dataLinha) return false; // Linha sem data válida
+
+    if (inicio && dataLinha < inicio) return false; // Fora do intervalo inicial
+    if (fim && dataLinha > fim) return false; // Fora do intervalo final
+
+    return true;
+}
+        </script>
+  </body> 

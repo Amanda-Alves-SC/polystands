@@ -1,0 +1,58 @@
+body {
+    height: 100vh; /* Para cobrir toda a tela */
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../img/teste_stand.jpg");
+    background-size: cover; /* Faz a imagem cobrir toda a tela */
+    background-position: center; /* Centraliza a imagem */
+}
+
+.agendamento{
+    margin-right: 20px;
+    margin-top: 10px;
+    height: 40px;
+    border-radius: 5px;
+    border-color: #cf6a05;
+    background-color: #cf6a05;
+    color: #FFFFFF;
+}
+
+.home{
+    margin-right: 20px;
+    margin-top: 10px;
+    height: 40px;
+    border-radius: 5px;
+    border-color: #cf6a05;
+    background-color: #cf6a05;
+    color: #FFFFFF;
+}
+
+.consulta{
+    margin-right: 20px;
+    margin-top: 10px;
+    height: 40px;
+    border-radius: 5px;
+    border-color: #cf6a05;
+    background-color: #cf6a05;
+    color: #FFFFFF;
+}
+
+.faixa {
+        width: 100%;
+        height: 80px; /* Ajuste a altura conforme necessário */
+        background: linear-gradient(-30deg,  #F38E29, #FFFFFF);
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: right;
+}
+
+.logo{
+    margin-right: 990px;
+    margin-top: 1px;
+}
