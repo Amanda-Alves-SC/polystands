@@ -87,11 +87,10 @@
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
-                        <th>Sobrenome</th>
+                        <th>Telefone</th>
                         <th>Email</th>
                         <th>Data</th>
-                        <th>Descrição</th>
-                        <th>Dimensão em m2</th>
+                        <th>Briefing</th>
                         <th>Permissão de uso de dados</th>
                     </tr>
                 </thead>
@@ -112,11 +111,10 @@
                     const linha = `<tr>
                         <td>${ag.id}</td>
                         <td>${ag.nome}</td>
-                        <td>${ag.sobrenome}</td>
+                        <td>${ag.telefone}</td>
                         <td>${ag.email}</td>
                         <td>${ag.data}</td>
                         <td>${ag.descricao_projeto}</td>
-                        <td>${ag.dimensao_m2}</td>
                         <td>${ag.aceite_termo}</td>
 
                     </tr>`;
@@ -157,11 +155,10 @@ async function carregarAgendamentos() {
         const linha = `<tr>
             <td>${ag.id}</td>
             <td>${ag.nome}</td>
-            <td>${ag.sobrenome}</td>
+            <td>${ag.telefone}</td>
             <td>${ag.email}</td>
             <td class="data">${ag.data}</td>  <!-- Importante: Classe 'data' -->
             <td>${ag.descricao_projeto}</td>
-            <td>${ag.dimensao_m2}</td>
             <td>${ag.aceite_termo}</td>
         </tr>`;
         tabela.innerHTML += linha;

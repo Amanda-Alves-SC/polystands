@@ -45,20 +45,22 @@ def consulta():
 def agendamento():
          if request.method == 'POST':
             nome = request.form.get('nome')
-            sobrenome = request.form.get('sobrenome')
+            telefone = request.form.get('telefone')
             email = request.form.get('email')
             data = request.form.get('data')
-            descricao_projeto = request.form.get('descricao_projeto')
-            dimensao_m2 = request.form.get('dimensao_m2')
+            objetivo = request.form.get('objetivo')
+            publico = request.form.get('publico')
+            detalhes = request.form.get('detalhes')
             aceite_termo = request.form.get('aceite_termo')
+            descricao_projeto = f"#objetivo: {objetivo}# #publico: {publico}# #detalhes: {detalhes}#"
             # Conexão com o banco
             connection = mysql.connector.connect(**config)
             cursor = connection.cursor()
 
             try:  
                 # Inserção no banco (barbeiro)
-                sql = "INSERT INTO agendamento (nome, sobrenome,email , data, descricao_projeto, dimensao_m2, aceite_termo ) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-                valores = (nome, sobrenome,email , data, descricao_projeto, dimensao_m2, aceite_termo)
+                sql = "INSERT INTO agendamento (nome, telefone,email , data, descricao_projeto, aceite_termo ) VALUES ( %s, %s, %s, %s, %s, %s)"
+                valores = (nome, telefone,email , data, descricao_projeto, aceite_termo)
                 cursor.execute(sql, valores)
                 connection.commit()
                 
@@ -77,7 +79,7 @@ def agendamento():
 def api_agendamentos():
     connection = mysql.connector.connect(**config)
     cursor = connection.cursor()
-    cursor.execute("""select id,nome,sobrenome,email, DATE_FORMAT(data,'%d/%m/%Y') as data, descricao_projeto,dimensao_m2,    CASE 
+    cursor.execute("""select id,nome,telefone,email, DATE_FORMAT(data,'%d/%m/%Y') as data, descricao_projeto,    CASE 
         WHEN aceite_termo = 'on' THEN 'sim' 
         ELSE 'não' 
     END AS aceite_termo from agendamento;""")
@@ -88,12 +90,11 @@ def api_agendamentos():
         {
             "id": row[0],
             "nome": row[1],
-            "sobrenome": row[2],
+            "telefone": row[2],
             "email": row[3],
             "data": row[4],
             "descricao_projeto": row[5],
-            "dimensao_m2": row[6],
-            "aceite_termo": row[7]
+            "aceite_termo": row[6]
         }
         for row in agendamentos
     ])

@@ -41,7 +41,7 @@ body {
 
 .faixa {
         width: 100%;
-        height: 80px; /* Ajuste a altura conforme necessário */
+        height: 75px; /* Ajuste a altura conforme necessário */
         background: linear-gradient(-30deg,  #F38E29, #FFFFFF);
         position: fixed;
         top: 0;

@@ -19,12 +19,12 @@
             <h2 class="form-title">Agendar atendimento</h2>
             <div class="nome_completo">
                 <div class="form-group">
-                <label for="name">Nome</label>
+                <label for="name">Nome completo</label>
                 <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome">
                 </div>
                 <div class="form-group">
-                    <label for="sobrenome">Sobrenome</label>
-                    <input type="text" class="form-control" id="sobrenome" name="sobrenome" placeholder="Sobrenome">
+                    <label for="telefone">Telefone</label>
+                    <input type="text" class="form-control" id="telefone" name="telefone" placeholder="(11) 9 0000-0000">
                 </div>
             </div>
             <div class="form-group">
@@ -45,13 +45,8 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="descricao_projeto">Descrição do projeto</label>
-                <textarea class="form-control" type="text" id="descricao_projeto" name="descricao_projeto"  placeholder="descrição"></textarea>
+              <button type="button" class="btn btn-primary2" id="abrirBriefing">Preencher Briefing do projeto</button>
               </div>
-            <div class="form-group">
-                <label for="dimensao_m2">Dimensão em m2</label>
-                <input type="text" class="form-control" id="dimensao_m2" name="dimensao_m2" placeholder="m2">
-            </div>
             <div class="form-group_form-check">
             <input type="checkbox" class="form-check-input" id="aceite_termo" name="aceite_termo">
             <label class="form-check-label" for="aceite_termo">Aceitar uso de dados</label>
@@ -59,6 +54,24 @@
             <button type="submit" class="btn btn-primary">Enviar</button>
         </form> 
     </div>
+
+<!-- Formulário do Briefing (inicialmente oculto) -->
+<div id="briefingForm" class="briefing-container">
+  <h3>Briefing do Projeto</h3>
+  <div class="campos">
+    <label for="objetivo">Objetivo:</label>
+    <input type="text" id="objetivo" name="objetivo" placeholder="Descreva o objetivo">
+
+    <label for="publico">Público-alvo:</label>
+    <input type="text" id="publico" name="publico" placeholder="Quem será o público-alvo?">
+
+    <label for="detalhes">Detalhes adicionais:</label>
+    <textarea id="detalhes" name="detalhes" rows="3"></textarea>
+  </div>
+  <button type="submit" class="btn-enviar">Salvar Briefing</button>
+  <button type="button" class="btn-fechar" id="fecharBriefing">Fechar</button>
+</div>
+
     <script>
       const mensagemErro = "{{ mensagem_erro }}";  // Variável passada pelo Flask
       if (mensagemErro) {
@@ -79,6 +92,16 @@
           confirmButtonText: 'Ok'
         });
       }
-    </script>    
+    </script>
+    
+    <script>
+      document.getElementById("abrirBriefing").addEventListener("click", function() {
+          document.getElementById("briefingForm").style.display = "block";
+      });
+    
+      document.getElementById("fecharBriefing").addEventListener("click", function() {
+          document.getElementById("briefingForm").style.display = "none";
+      });
+    </script>
   </body>
 </html>

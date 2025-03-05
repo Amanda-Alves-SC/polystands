@@ -43,7 +43,7 @@ body {
 
 .faixa {
         width: 100%;
-        height: 80px; /* Ajuste a altura conforme necessário */
+        height: 75px; /* Ajuste a altura conforme necessário */
         background: linear-gradient(-30deg, #F38E29, #FFFFFF);
         position: fixed;
         top: 0;
@@ -144,4 +144,64 @@ body {
 
 .form-check-input{
     margin-top: 10px;
+}
+
+.btn-primary2{
+    width: 100%;
+    background-color: orange;
+    color: white;
+    border: none;
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 5px;
+}
+
+.briefing-container {
+    display: none;  /* Oculto por padrão */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    z-index: 1000;
+    width: 300px;
+}
+
+.btn-fechar {
+    margin-top: 10px;
+    background-color: orange;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.btn-fechar:hover {
+    background-color: darkorange;
+}
+
+.campos{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    border: 2px solid #D46C04;
+    background-color: #FFFFFF;
+    border-radius: 20px; /* Torna a borda arredondada */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);    background-color: #FFFFFF;
+}
+
+.btn-enviar{
+    margin-top: 10px;
+    background-color: orange;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
 }
