@@ -44,33 +44,489 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="briefing">
               <button type="button" class="btn btn-primary2" id="abrirBriefing">Preencher Briefing do projeto</button>
+                <label for="exampleFormControlFile1"></label>
+                <input type="file" class="form-control-file" name="doc_briefing" enctype="multipart/form-data" id="doc_briefing">
               </div>
+              
             <div class="form-group_form-check">
             <input type="checkbox" class="form-check-input" id="aceite_termo" name="aceite_termo">
             <label class="form-check-label" for="aceite_termo">Aceitar uso de dados</label>
             </div>
             <button type="submit" class="btn btn-primary">Enviar</button>
         </form> 
+      </div>
     </div>
 
-<!-- Formulário do Briefing (inicialmente oculto) -->
-<div id="briefingForm" class="briefing-container">
-  <h3>Briefing do Projeto</h3>
-  <div class="campos">
-    <label for="objetivo">Objetivo:</label>
-    <input type="text" id="objetivo" name="objetivo" placeholder="Descreva o objetivo">
+<!-- Formulário do Briefing (inicialmente oculto) STEP1-->
+  <div id="briefingForm" class="briefing-container">
+    <div  class="step active" id="step1">
+    <h3>Empresa e Evento</h3>
+    <div class="campos">
+      <div class="form-group">
+      <label for="Endereço" style="margin-top: 5px;">Endereço</label>
+      <input type="text" id="Endereco" class="Endereco" name="Endereco" placeholder="Bairro: Rua: Complemeto:">
+      </div>
 
-    <label for="publico">Público-alvo:</label>
-    <input type="text" id="publico" name="publico" placeholder="Quem será o público-alvo?">
+      <div class="razao_mome">
+        <div class="form-group">
+        <label for="Razão_social">Razão social</label>
+        <input type="text" id="Razao_social" name="Razao_social" placeholder="Razão social">
+        </div>
 
-    <label for="detalhes">Detalhes adicionais:</label>
-    <textarea id="detalhes" name="detalhes" rows="3"></textarea>
+        <div class="form-group">
+        <label for="Nome_Fantasia">Nome Fantasia</label>
+        <input id="Nome_Fantasia" class="Nome_Fantasia" name="Nome_Fantasia">
+        </div>
+
+        <div class="form-group">
+          <label for="Site">Site</label>
+          <input type="text" id="Site" name="Site" placeholder="Site">
+        </div>
+      </div>
+
+
+
+      <div class="form-group">
+      <div class="input-group date" data-date-format="dd/mm/yyyy">
+        <label for="data_entrega">Data de entrega do projeto</label>
+        <input  type="date" class="form-control" id="data_entrega" name="data_entrega" placeholder="dd/mm/yyyy">
+        <div class="input-group-addon" >
+          <span class="glyphicon glyphicon-th"></span>
+        </div>
+      </div>
+      </div>
+
+
+
+      <div class="nome_telefone_resp">
+        <div class="form-group">
+        <label for="Nome_Responsavel">Nome do responsável</label>
+        <input type="text" id="Nome_Responsavel" name="Nome_Responsavel" placeholder="Nome do responsável">
+        </div>
+
+        <div class="form-group">
+          <label for="telefone">Telefone</label>
+          <input type="text" class="form-control" id="telefone" name="telefone" placeholder="(11) 9 0000-0000">
+        </div>
+
+        <div class="form-group">
+          <label for="Email">Email</label>
+          <input type="text" id="Email" name="Email" placeholder="Email">
+          </div>
+      </div>
+
+
+      <div class="evento_local">
+        <div class="form-group">
+        <label for="Evento">Evento</label>
+        <input type="text" id="Evento" name="Evento" placeholder="Evento">
+        </div>
+
+        <div class="form-group">
+        <label for="Local">Local</label>
+        <input type="text" id="Local" name="Local" placeholder="Local">
+        </div>
+      </div>
+
+      <div class="area_stand">
+        <div class="form-group">
+        <label for="Stand">Stand Nº</label>
+        <input type="text" id="Stand" name="Stand" placeholder="Stand">
+        </div>
+      
+        <div class="form-group">
+        <div class="input-group date" data-date-format="dd/mm/yyyy">
+          <label for="data_evento">Data do evento</label>
+          <input  type="date" class="form-control" id="data_evento" name="data_evento" placeholder="dd/mm/yyyy">
+          <div class="input-group-addon" >
+            <span class="glyphicon glyphicon-th"></span>
+          </div>
+        </div>
+        </div>
+    </div>
+
+      <div class="form-group">
+      <label for="Informações_adicionas">Informações adicionas</label>
+      <input type="text" id="Informacoes_adicionas" name="Informacoes_adicionas" style="margin-bottom: 5px;" placeholder="Informações adicionas">
+      </div>
+    </div>
+    <button type="button" class="btn-proximo" onclick="nextStep(2)">Próximo</button>
+    <button type="button" class="btn-fechar" id="fecharBriefing">Fechar</button>
   </div>
-  <button type="submit" class="btn-enviar">Salvar Briefing</button>
-  <button type="button" class="btn-fechar" id="fecharBriefing">Fechar</button>
+
+
+
+  <!-- STEP 2-->
+  <div  class="step" id="step2" style="display: none;">
+    <h3> Informações do Stand</h3>
+      <div class="campos2">
+        <div class="valores_finais">
+          <div class="form-group">
+            <label for="Valor_verba">Verba disponível R$</label>
+            <input type="text" id="Valor_verba" name="Valor_verba" style="margin-left: 5px;" placeholder="Valor verba">
+           </div>
+    
+           <div class="form-group">
+            <label for="Contato">Contato</label>
+            <input type="text" id="Contato" name="Contato"style="margin-left: 5px;" placeholder="(11) 9 0000-0000">
+          </div>
+
+          <div class="form-group">
+            <div class="input-group date" data-date-format="dd/mm/yyyy">
+              <label>Data atual</label>
+              <input  type="date" class="form-control" id="data_atual" name="data_atual"style="margin-left: 5px;" placeholder="dd/mm/yyyy">
+              <div class="input-group-addon" >
+                <span class="glyphicon glyphicon-th"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="margin-left: 5px;">Espaço do stand</h3>
+        <div class="Espaco_stand" name="Espaco_stand">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="Ilha" id="Ilha" value="Ilha">
+            <label class="form-check-label" for="exampleRadios1">Ilha</label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="ponto_ilha" id="ponto_ilha" value="ponto_ilha">
+            <label class="form-check-label" for="ponto_ilha">Ponto</label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="Esquina" id="Esquina" value="Esquina">
+            <label class="form-check-label" for="Esquina">Esquina</label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="Meio_Box" id="Meio/Box" value="Meio/Box" >
+            <label class="form-check-label" for="Meio/Box">Meio/Box</label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="Passante" id="Passante" value="Passante">
+            <label class="form-check-label" for="Passante">Passante</label>
+          </div>
+        </div>
+
+        <h3 style="margin-left: 5px;">Medidas</h3>
+        <div class="medidas_stand" name="medidas_stand">
+
+          <div class="form-group">
+          <label for="Frente"></label>
+          <input type="text" id="medida_Frente" name="medida_Frente" placeholder="Frente">
+          </div>
+
+          <div class="form-group">
+          <label for="Fundo"></label>
+          <input type="text" id="medida_Fundo" name="medida_Fundo" placeholder="Fundo">
+          </div>
+
+          <div class="form-group">
+          <label for="Area_total"></label>
+          <input type="text" id="Area_total" name="Area_total" placeholder="Área total">
+          </div>
+        </div>
+
+
+        <h3 style="margin-left: 5px;">Estilo da construção</h3>
+        <div class="Estilo_construcao" name="Estilo_construcao">
+
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="Construido" id="Construido" placeholder="Construido" >
+            <label class="form-check-label" for="Construido">Construído</label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="Especial" id="Especial" placeholder="Especial">
+            <label class="form-check-label" for="Especial">Especial</label>
+          </div>
+        </div>
+          
+          <h3 style="margin-left: 5px;">Piso</h3>
+          <div class="Adicionais" name="Adicionais">
+            <div class="adicionas1">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="Piso_elevado" id="Piso_elevado" placeholder="Piso_elevado">
+                <label class="form-check-label" for="gridRadios1">Piso elevado</label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="Forracao" id="Forracao" placeholder="Forracao">
+                <label class="form-check-label" for="gridRadios1">Forração</label>
+              </div>
+
+              <div id="modeloPisoContainer" style="display: none;">
+                <label for="modeloPiso"></label>
+                <input class="form-check-input" type="text" name="cor" id="cor" placeholder="cor">
+              </div>
+
+            
+
+              <div id="modeloMadeira" style="display: none;">
+                <label for="modeloPiso"></label>
+                <input class="form-check-input" type="text" name="modelo" id="modelo" placeholder="modelo">
+              </div>
+
+             
+            </div>
+          
+
+            <div class="adicionais2">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="mdf" id="mdf" placeholder="mdf">
+                <label class="form-check-label" for="gridRadios1">Mdf</label>
+              </div>
+
+              <div id="cor_mdf" style="display: none;">
+                <label for="modeloPiso"></label>
+                <input class="form-check-input" type="text" name="cor_mdf" id="cor_mdf" placeholder="cor mdf">
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="Decorflex" id="Decorflex" placeholder="Decorflex">
+                <label class="form-check-label" for="gridRadios1">Decorflex</label>
+              </div>
+
+            </div>
+          </div>
+            
+          <h3 style="margin-left: 5px;">Sala</h3>
+          <div class="sala" name="sala">
+            <div class="sala1">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="Sala_VIP" id="Sala_VIP" placeholder="Sala_VIP">
+                <label class="form-check-label" for="Sala_VIP">Sala VIP</label>
+              </div>
+      
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="Louge" id="Louge" placeholder="Louge">
+                <label class="form-check-label" for="Louge">Louge</label>
+              </div>
+      
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="Copa" id="Copa" placeholder="Copa" >
+                <label class="form-check-label" for="Copa">Copa</label>
+              </div>
+            </div>
+      
+            <div class="sala2">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="Deposito" id="Deposito" placeholder="Deposito">
+                <label class="form-check-label" for="Deposito">Depósito</label>
+              </div>
+
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="Bar" id="Bar" placeholder="Bar">
+                <label class="form-check-label" for="Bar">Bar</label>
+              </div>
+            </div>
+          </div>
+              
+            <h3 style="margin-left: 5px;">Área de exposição</h3>
+            <div class="exposicao" name="exposicao">
+              <div class="exposicao1">
+                <div>
+                <div class="form-check form-check-inline"></div>
+                <input class="form-check-input" type="radio" name="Vitrines" id="Vitrines" placeholder="Vitrines">
+                <label class="form-check-label" for="Vitrines">Vitrines</label>
+                </div>
+      
+                <div>
+                  <div class="form-check form-check-inline"></div>
+                  <input class="form-check-input" type="radio" name="Prateleiras" id="Prateleiras" placeholder="Prateleiras">
+                  <label class="form-check-label" for="Prateleiras">Prateleiras</label>
+                </div>
+
+                <div>
+                  <div class="form-check form-check-inline"></div>
+                  <input class="form-check-input" type="radio" name="Balcao" id="Balcao" placeholder="Balcao">
+                  <label class="form-check-label" for="Balcao">Balcão</label>
+                </div>
+
+                <div>
+                  <div class="form-check form-check-inline"></div>
+                  <input class="form-check-input" type="radio" name="Balcao_vitrine" id="Balcao_vitrine" placeholder="Balcao_vitrine">
+                  <label class="form-check-label" for="Balcao_vitrine">Balcão Vitrine</label>
+                </div>
+
+              </div>
+                
+              <div class="exposicao2">
+                <div>
+                  <div class="form-check form-check-inline"></div>
+                  <input class="form-check-input" type="radio" name="Display" id="Display" placeholder="Display">
+                  <label class="form-check-label" for="Display">Display</label>
+                </div>
+      
+                <div>
+                  <div class="form-check form-check-inline"></div>
+                  <input class="form-check-input" type="radio" name="Bancada" id="Bancada" placeholder="Bancada">
+                  <label class="form-check-label" for="Bancada">Bancada</label>
+                </div>
+
+                <div>
+                  <div class="form-check form-check-inline"></div>
+                  <input class="form-check-input" type="radio" name="Nicho" id="Nicho" placeholder="Nicho">
+                  <label class="form-check-label" for="Nicho">Nicho</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+            <label for="Cores_empresa">Cores da empresa</label>
+            <input type="text" id="Cores_empresa" name="Cores_empresa" style="margin-left: 5px;" placeholder="Cores predominantes da empresa">
+            </div>
+
+            <div class="form-group">
+            <label for="produtos">Produtos em exposição</label>
+            <input type="text" id="produtos" name="produtos" style="margin-left: 5px;" placeholder="produtos">
+            </div>
+
+
+               <!-- Mobiliário -->
+               <button class="btn-mobiliario" onclick="toggleLista()">Mobiliário</button>
+
+               <div class="lista-mobiliario" id="listaMobiliario" name="listaMobiliario" style="display: none; height: 300px; overflow-y: auto;">
+                   <label><input type="checkbox" value="cadeira"> Cadeiras</label>
+                   <label><input type="checkbox" value="mesa"> Mesa redonda</label>
+                   <label><input type="checkbox" value="balcao"> Balcão bar</label>
+                   <label><input type="checkbox" value="armario"> Armário</label>
+                   <label><input type="checkbox" value="sofa"> Mesa bistro</label>
+                   <label><input type="checkbox" value="sofa"> Ar condicionado</label>
+                   <label><input type="checkbox" value="sofa"> Banquetas</label>
+                   <label><input type="checkbox" value="sofa"> Mesa canto</label>
+                   <label><input type="checkbox" value="sofa"> Freezer</label>
+                   <label><input type="checkbox" value="sofa"> Geladeira</label>
+                   <label><input type="checkbox" value="sofa"> Frigobar</label>
+                   <label><input type="checkbox" value="sofa"> Lixeira</label>
+                   <label><input type="checkbox" value="sofa"> Tv Plasma/lcd</label>
+                   <label><input type="checkbox" value="sofa"> Video wall</label>
+                   <label><input type="checkbox" value="sofa"> Porta folhetos</label>
+                   <label><input type="checkbox" value="sofa"> Sofá</label>
+                   <button class="btn-fechar" onclick="toggleLista()">Fechar</button>
+               </div>
+              
+
+              
+          </div>
+
+          
+
+
+
+
+
+          <button type="button" class="btn-proximo" onclick="nextStep(1)">Voltar</button>
+          <button type="button" class="btn-fechar" id="fecharBriefing2">Fechar</button>
+          <button type="submit" class="btn-enviar" id="salvarBriefing">Salvar Briefing</button>
+        </div>
+
+
+      </div>
+
+
+
+
+  </div>
+
+
+
+
 </div>
+
+
+
+
+
+
+<script>
+  let currentStep = 1;
+
+  function showStep(step) {
+      document.querySelectorAll('.step').forEach(div => div.style.display = 'none');
+      document.getElementById(`step${step}`).style.display = 'block';
+      currentStep = step;
+  }
+
+  function nextStep(step) {
+      showStep(step);
+  }
+
+  function prevStep(step) {
+      showStep(step);
+  }
+
+  document.getElementById("abrirBriefing").addEventListener("click", function() {
+      document.getElementById("briefingForm").style.display = "block";
+  });
+
+  document.getElementById("fecharBriefing").addEventListener("click", function() {
+      document.getElementById("briefingForm").style.display = "none";
+  });
+
+  document.getElementById("salvarBriefing").addEventListener("click", function() {
+      document.getElementById("briefingForm").style.display = "none";
+  });
+
+  document.getElementById("fecharBriefing2").addEventListener("click", function() {
+      document.getElementById("briefingForm").style.display = "none";
+  });
+
+  document.getElementById("Forracao").addEventListener("change", function() {
+      var modeloPisoContainer = document.getElementById("modeloPisoContainer");
+      
+      // Se o rádio "Forração" for selecionado, exibe o campo de cor
+      if (this.checked) {
+          modeloPisoContainer.style.display = "block";
+      }
+  });
+
+  document.getElementById("Carpete").addEventListener("change", function() {
+      var modeloPisoContainer = document.getElementById("modeloMadeira");
+      
+      // Se o rádio "Forração" for selecionado, exibe o campo de cor
+      if (this.checked) {
+          modeloPisoContainer.style.display = "block";
+      }
+  });
+
+document.getElementById("mdf").addEventListener("change", function(){
+  var cor_mdf = document.getElementById("cor_mdf");
+
+  if(this.checked){
+    cor_mdf.style.display = "block";
+  }
+});
+
+document.getElementById("Paviflex").addEventListener("change", function(){
+  var modelo_paviflex = document.getElementById("modelo_paviflex");
+
+  if(this.checked){
+    modelo_paviflex.style.display = "block";
+  }
+});
+
+document.getElementById("Stand_fechado").addEventListener("change", function(){
+  var percentual_fechado = document.getElementById("percentual_fechado");
+
+  if(this.checked){
+    percentual_fechado.style.display = "block";
+  }
+});
+
+function toggleLista() {
+            let lista = document.getElementById("listaMobiliario");
+            lista.style.display = (lista.style.display === "block") ? "none" : "block";
+        }
+
+
+  </script>
+
+
 
     <script>
       const mensagemErro = "{{ mensagem_erro }}";  // Variável passada pelo Flask
@@ -94,14 +550,5 @@
       }
     </script>
     
-    <script>
-      document.getElementById("abrirBriefing").addEventListener("click", function() {
-          document.getElementById("briefingForm").style.display = "block";
-      });
-    
-      document.getElementById("fecharBriefing").addEventListener("click", function() {
-          document.getElementById("briefingForm").style.display = "none";
-      });
-    </script>
   </body>
 </html>

@@ -4,56 +4,74 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url("../img/teste_stand.jpg");
+    background-image: url("../img/teste_azul.jpeg");
     background-size: cover; /* Faz a imagem cobrir toda a tela */
     background-position: center; /* Centraliza a imagem */
+    padding-top: 220px; /* Garante que o conteúdo fique abaixo da faixa */
+
 }
 
+/* Botoes */
 .agendamento{
     margin-right: 20px;
     margin-top: 10px;
     height: 40px;
+    width: 120px; /* Padroniza os botões */
     border-radius: 5px;
-    border-color: #cf6a05;
+    border: none;
     background-color: #cf6a05;
     color: #FFFFFF;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 .home{
     margin-right: 20px;
     margin-top: 10px;
     height: 40px;
+    width: 120px; /* Padroniza os botões */
     border-radius: 5px;
-    border-color: #cf6a05;
+    border: none;
     background-color: #cf6a05;
     color: #FFFFFF;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 .consulta{
     margin-right: 20px;
     margin-top: 10px;
     height: 40px;
+    width: 120px; /* Padroniza os botões */
     border-radius: 5px;
-    border-color: #cf6a05;
+    border: none;
     background-color: #cf6a05;
     color: #FFFFFF;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
+/* Faixa do topo */
 .faixa {
-        width: 100%;
-        height: 75px; /* Ajuste a altura conforme necessário */
-        background: linear-gradient(-30deg,  #F38E29, #FFFFFF);
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 1000;
-        margin-bottom: 10px;
-        display: flex;
-        justify-content: right;
+    width: 100%;
+    height: 75px;
+    background: linear-gradient(-30deg, #F38E29, #FFFFFF);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    justify-content: center; /* Centraliza os botões */
+    gap: 5px; /* Reduz o espaçamento entre os botões */
 }
 
 .logo{
-    margin-right: 500px;
+    margin-right: 300px;
     margin-top: 1px;
     display: flex;
     flex-direction: row;

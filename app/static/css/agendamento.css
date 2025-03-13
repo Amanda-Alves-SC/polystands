@@ -4,55 +4,70 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url("../img/teste_stand.jpg");
+    background-image: url("../img/teste_azul.jpeg");
     background-size: cover; /* Faz a imagem cobrir toda a tela */
     background-position: center; /* Centraliza a imagem */
 }
     
 
+/* Botoes */
+.agendamento{
+    margin-right: 20px;
+    margin-top: 10px;
+    height: 40px;
+    width: 120px; /* Padroniza os botões */
+    border-radius: 5px;
+    border: none;
+    background-color: #cf6a05;
+    color: #FFFFFF;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
 .home{
     margin-right: 20px;
     margin-top: 10px;
     height: 40px;
-    width: 60px;
+    width: 120px; /* Padroniza os botões */
     border-radius: 5px;
-    border-color: #cf6a05;
+    border: none;
     background-color: #cf6a05;
     color: #FFFFFF;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 .consulta{
     margin-right: 20px;
     margin-top: 10px;
     height: 40px;
+    width: 120px; /* Padroniza os botões */
     border-radius: 5px;
-    border-color: #cf6a05;
+    border: none;
     background-color: #cf6a05;
     color: #FFFFFF;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-.agendamento{
-    margin-right: 20px;
-    margin-top: 10px;
-    height: 40px;
-    border-radius: 5px;
-    border-color: #cf6a05;
-    background-color: #cf6a05;
-    color: #FFFFFF;
-}
-
+/* Faixa do topo */
 .faixa {
-        width: 100%;
-        height: 75px; /* Ajuste a altura conforme necessário */
-        background: linear-gradient(-30deg, #F38E29, #FFFFFF);
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 1000;
-        margin-bottom: 10px;
-        display: flex;
-        justify-content: right;
-      }
+    width: 100%;
+    height: 75px;
+    background: linear-gradient(-30deg, #F38E29, #FFFFFF);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    justify-content: center; /* Centraliza os botões */
+    gap: 5px; /* Reduz o espaçamento entre os botões */
+}
 
 .nome_completo{
     display: flex;
@@ -69,7 +84,7 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
     margin-top: 100px;
     margin-bottom: 10px;
     border: 2px solid #D46C04;
@@ -77,18 +92,19 @@ body {
     border-radius: 20px; /* Torna a borda arredondada */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);    background-color: #FFFFFF;
     height: 500px;
-    width: 450px;
+    width: 665px;
 }
 
 .form-group_form-check{
     display: block;
+    margin-top: 20px;
 
 }
 
 .logo img{
-    margin-right: 965px;
+    margin-right: 770px;
     margin-top: 1px;
-    width: 98px;  /* Ajuste o tamanho conforme necessário */
+    width: 96px;  /* Ajuste o tamanho conforme necessário */
     
 }
 
@@ -170,7 +186,21 @@ body {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     z-index: 1000;
-    width: 300px;
+    width: 510px; /* Aumenta o espaço para os campos */
+    max-width: 90vw; /* Evita que fique muito grande em telas pequenas */
+    height: auto; /* Ajusta conforme o conteúdo */
+    max-height: 80vh;
+    overflow-y: auto;
+    overflow: visible; /* Permite que os elementos fiquem visíveis */
+    
+}
+
+.campos input, label{
+    margin-left: 10px;
+    margin-right: 10px;
+    flex: 1;
+    width: 100%; /* Ajuste para ocupar o espaço necessário */
+    gap: 5px;
 }
 
 .btn-fechar {
@@ -182,19 +212,60 @@ body {
     cursor: pointer;
 }
 
+
+.btn-proximo{
+    margin-top: 10px;
+    background-color: orange;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+
+}
+
+.btn-proximo:hover {
+    background-color: darkorange;
+}
+
+
 .btn-fechar:hover {
     background-color: darkorange;
 }
 
 .campos{
     display: flex;
-    align-items: center;
+    align-items: right;
     flex-direction: column;
     gap: 10px;
     border: 2px solid #D46C04;
     background-color: #FFFFFF;
     border-radius: 20px; /* Torna a borda arredondada */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);    background-color: #FFFFFF;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 300px;
+    overflow-y: auto;
+
+}
+
+.campos2{
+    display: flex;
+    align-items: right;
+    flex-direction: column;
+    gap: 10px;
+    border: 2px solid #D46C04;
+    background-color: #FFFFFF;
+    border-radius: 20px; /* Torna a borda arredondada */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);    background-color: #FFFFFF;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 300px;
+    overflow-y: auto;
+
 }
 
 .btn-enviar{
@@ -204,4 +275,260 @@ body {
     border: none;
     padding: 5px 10px;
     cursor: pointer;
+}
+
+.btn-enviar:hover {
+    background-color: darkorange;
+}
+
+.objetivo{
+    margin-top: 5px;
+}
+
+.detalhes{
+    margin-bottom: 6px;
+}
+.briefing{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex: 1;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.form-control-file{
+    width: 100%;
+    background-color: orange;
+    color: white;
+    border: none;
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 5px;
+}
+
+
+.btn-mobiliario {
+    padding: 10px;
+    background-color: orange;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+/* Lista oculta inicialmente */
+.lista-mobiliario{
+    display: none;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    height: auto; /* Permite que a altura se ajuste ao conteúdo */
+    min-height: 150px; /* Garante uma altura mínima maior */
+    max-height: 300px; /* Evita que a lista fique muito grande */
+    overflow-y: auto; /* Adiciona rolagem apenas se necessário */
+    width: 180px;
+    
+}
+
+/* Checkbox estilizado */
+.lista-mobiliario label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.step2{
+    width: 510px;
+    height: 400px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+}
+
+.Espaco_stand{
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+}
+
+.medidas_stand {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 50px;
+    gap: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
+
+}
+
+.medidas_stand input {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100px;
+    gap: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
+
+}
+
+.Estilo_construcao{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+} 
+
+.Balcao_vitrine{
+    display: flex;
+    flex-direction: column;
+}
+
+.Balcao_vitrine input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 5px; /* Dá espaço entre os elementos */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.adicionas1{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.adicionas2{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    
+}
+
+.Adicionais{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+
+.Balcao_vitrine{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.sala{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.sala1{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.sala2{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.exposicao{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.exposicao1{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.exposicao2{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.valores_finais {
+    display: flex;
+    justify-content: space-between; /* Distribui os elementos igualmente */
+    gap: 5px; /* Espaço entre os campos */
+    width: 100%;
+    margin-top: 10px;
+}
+
+.valores_finais div, 
+.valores_finais label, 
+.valores_finais input {
+    display: block; /* Mantém os labels acima dos inputs */
+    width: 90%;
+}
+
+.valores_finais > div {
+    flex: 1; /* Faz com que cada item ocupe o mesmo espaço */
+    min-width: 100px; /* Evita que fiquem muito pequenos */
+}
+
+.razao_mome{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex: 1; /* Faz com que cada item ocupe o mesmo espaço */
+    min-width: 100px; /* Evita que fiquem muito pequenos */
+}
+
+.razao_mome label,
+.razao_mome input{
+    display: block; /* Mantém os labels acima dos inputs */
+    width: 90%;
+}
+
+
+.nome_telefone_resp{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex: 1; /* Faz com que cada item ocupe o mesmo espaço */
+    min-width: 100px; /* Evita que fiquem muito pequenos */
+}
+
+.nome_telefone_resp label,
+.nome_telefone_resp input{
+    display: block; /* Mantém os labels acima dos inputs */
+    width: 90%;
+}
+
+.evento_local{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex: 1; /* Faz com que cada item ocupe o mesmo espaço */
+    min-width: 100px; /* Evita que fiquem muito pequenos */
+}
+
+.area_stand{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex: 1; /* Faz com que cada item ocupe o mesmo espaço */
+    min-width: 200px; /* Evita que fiquem muito pequenos */
+    margin-right: 30px;
 }

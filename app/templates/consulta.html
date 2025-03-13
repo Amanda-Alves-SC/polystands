@@ -91,6 +91,7 @@
                         <th>Email</th>
                         <th>Data</th>
                         <th>Briefing</th>
+                        <th>Doc Briefing</th>
                         <th>Permissão de uso de dados</th>
                     </tr>
                 </thead>
@@ -115,6 +116,7 @@
                         <td>${ag.email}</td>
                         <td>${ag.data}</td>
                         <td>${ag.descricao_projeto}</td>
+                        <td>${ag.doc_briefing}</td>
                         <td>${ag.aceite_termo}</td>
 
                     </tr>`;
@@ -159,6 +161,7 @@ async function carregarAgendamentos() {
             <td>${ag.email}</td>
             <td class="data">${ag.data}</td>  <!-- Importante: Classe 'data' -->
             <td>${ag.descricao_projeto}</td>
+            <td>${ag.doc_briefing}</td>
             <td>${ag.aceite_termo}</td>
         </tr>`;
         tabela.innerHTML += linha;

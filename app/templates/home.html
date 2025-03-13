@@ -4,7 +4,6 @@
     <title>Agendamento</title>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css') }}">
-
     <!-- Bootstrap Font Icon CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">  </head>
   <body>
@@ -30,21 +29,53 @@
       </div>
     </div>
 
+  <!--CONTÚDO DA HOME-->
+
+  <div class="servicos">
+    <h4>Projetos</h4> <!-- Título no topo -->
+    <div class="servicos-container">
+        <div class="stand">
+            <img src="{{ url_for('static', filename='img/teste_pdv.jpg') }}" width="260px" height="200px">
+            <h3>Stands</h3>
+            <p>Projeto, execução e montagem <br>de Stands</p>
+        </div>
+
+        <div class="quiosque">
+            <img src="{{ url_for('static', filename='img/teste_cenografia.jpg') }}" width="260px" height="200px">
+            <h3>Cenografia</h3>
+            <p>Especialistas em cenografias para <br>eventos empresariais</p>
+        </div>
+
+        <div class="cenografia">
+            <img src="{{ url_for('static', filename='img/teste_quiosque.jpg') }}" width="260px" height="200px">
+            <h3>Quiosques</h3>
+            <p>Projeto, execução e montagem <br>de quiosques </p>
+        </div>
+    </div>
+
+    <h3>Por que contratar a Poly Stands</h3>
+        <p>Se você busca inovação, qualidade e um atendimento personalizado para a criação de stands e soluções para eventos<br>
+         a Poly Stands é a escolha certa! Com uma equipe altamente qualificada e anos de experiência no mercado<br>
+          entregamos projetos sob medida para destacar sua marca e garantir o sucesso da sua participação em feiras e exposições.</p>
+</div>
+
       <div class="contatos">
         <div class="logo-contatos">
-          <img src="{{ url_for('static', filename='img/logo_poly.png') }}" width="100px" height="70px">
+          <!--<img src="{{ url_for('static', filename='img/logo_poly.png') }}" width="100px" height="70px">-->
         </div>
           <div class="whatsapp">
             <h2><i class="bi bi-whatsapp"></i></h2>    
-            <text>(11) 9 9879-1046</text>
+            <p>(11) 9 9879-1046</p>
           </div>
           <div class="endereco">
             <h2><i class="bi bi-building"></i></h2>
-            <text>Rua Tatsuo Okachi, Número 498<br> Chacará Inglesa</text>
+            <p>Rua Tatsuo Okachi, Número 498<br> Chacará Inglesa</p>
           </div>
           <div class="contato_email">
             <h2><i class="bi bi-envelope"></i></h2>
-            <text>polystands@gmail.com</text>
+            <p>polystands@gmail.com</p>
           </div>
       </div>
   </body> 
+
+</html>
