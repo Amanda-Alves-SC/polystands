@@ -15,7 +15,8 @@
         <a href="consulta"><button class="consulta">Consulta</button></a>
     </div>
     <div class="form1">
-        <form  action="/agendamento" id="agendar" method="POST">
+      <div class="campos">
+        <form  action="/agendamento" id="agendar" method="POST" enctype="multipart/form-data">
             <h2 class="form-title">Agendar atendimento</h2>
             <div class="nome_completo">
                 <div class="form-group">
@@ -39,15 +40,15 @@
                     <div class="input-group date" data-date-format="dd/mm/yyyy">
                       <input  type="date" class="form-control" id="data" name="data" placeholder="dd/mm/yyyy">
                       <div class="input-group-addon" >
-                        <span class="glyphicon glyphicon-th"></span>
+                        <span class="glyphicon_glyphicon-th"></span>
                       </div>
                     </div>
                 </div>
             </div>
             <div class="briefing">
-              <button type="button" class="btn btn-primary2" id="abrirBriefing">Preencher Briefing do projeto</button>
+              <button type="button" class="btn btn-primary2" id="abrirBriefing" width="100px">Preencher Briefing</button>
                 <label for="exampleFormControlFile1"></label>
-                <input type="file" class="form-control-file" name="doc_briefing" enctype="multipart/form-data" id="doc_briefing">
+                <input type="file" class="form-control-file" name="doc_briefing" enctype="multipart/form-data" id="doc_briefing" width="100px">
               </div>
               
             <div class="form-group_form-check">
@@ -55,15 +56,17 @@
             <label class="form-check-label" for="aceite_termo">Aceitar uso de dados</label>
             </div>
             <button type="submit" class="btn btn-primary">Enviar</button>
-        </form> 
+          </div>
+      </form> 
       </div>
-    </div>
+
+    
 
 <!-- Formulário do Briefing (inicialmente oculto) STEP1-->
   <div id="briefingForm" class="briefing-container">
     <div  class="step active" id="step1">
     <h3>Empresa e Evento</h3>
-    <div class="campos">
+    <div class="campos2">
       <div class="form-group">
       <label for="Endereço" style="margin-top: 5px;">Endereço</label>
       <input type="text" id="Endereco" class="Endereco" name="Endereco" placeholder="Bairro: Rua: Complemeto:">
@@ -409,9 +412,13 @@
                    <label><input type="checkbox" value="sofa"> Sofá</label>
                    <button class="btn-fechar" onclick="toggleLista()">Fechar</button>
                </div>
+              </div>
               
 
               
+              <button type="button" class="btn-proximo" onclick="nextStep(1)">Voltar</button>
+              <button type="button" class="btn-fechar" id="fecharBriefing2">Fechar</button>
+              <button type="submit" class="btn-enviar" id="salvarBriefing">Salvar Briefing</button>
           </div>
 
           
@@ -420,9 +427,7 @@
 
 
 
-          <button type="button" class="btn-proximo" onclick="nextStep(1)">Voltar</button>
-          <button type="button" class="btn-fechar" id="fecharBriefing2">Fechar</button>
-          <button type="submit" class="btn-enviar" id="salvarBriefing">Salvar Briefing</button>
+
         </div>
 
 

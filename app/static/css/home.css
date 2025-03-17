@@ -5,7 +5,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url("../img/teste_blur_azul.png");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                      url("../img/teste_home.jpeg"); 
     background-size: cover;
     background-position: center;
     text-align: left;
@@ -80,7 +81,13 @@ body {
 }
 
 .logo-contatos {
-    margin-right: 500px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
+    margin-right: 290px;
 }
 
 /* Apresentação */
@@ -98,6 +105,8 @@ body {
     margin-top: 20px;
     text-align: center;
     text-shadow: #2B2D42;
+    animation-duration: 3s;
+    animation-name: slidein;
 
 }
 
@@ -108,12 +117,26 @@ body {
     font-family: serif;
     text-align: center;
     text-shadow: #2B2D42;
+    animation-duration: 3s;
+    animation-name: slidein;
 
 }
 
+@keyframes slidein {
+    from {
+      margin-left: 100%;
+      width: 300%;
+    }
+  
+    to {
+      margin-left: 0%;
+      width: 100%;
+    }
+  }
+
 /* Contatos */
 .contatos {
-    background-image: url("../img/teste_home5.png");
+    background-image: url("../img/contatos_home.png");
     background-size: cover;
     background-position: center;
     width: 100%;
@@ -160,7 +183,7 @@ body {
     align-items: center; /* Centraliza os itens no eixo horizontal */
     justify-content: center;
     gap: 20px;
-    background-image: url("../img/teste_home5.png");
+    background-image: url("../img/teste__home_projetos.png");
     height: 600px;
     width: 100%;
     background-size: cover;
@@ -173,7 +196,15 @@ body {
     background-color: rgba(0, 0, 0, 0.4); /* Fundo escuro translúcido */
     padding: 20px;
     border-radius: 1px; /* Cantos arredondados para um efeito moderno */
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.6s ease-out;
 
+}
+
+.servicos.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .servicos h4 {

@@ -4,7 +4,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url("../img/teste_azul.jpeg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                      url("../img/teste_home.jpeg"); 
     background-size: cover; /* Faz a imagem cobrir toda a tela */
     background-position: center; /* Centraliza a imagem */
 }
@@ -87,12 +88,13 @@ body {
     gap: 20px;
     margin-top: 100px;
     margin-bottom: 10px;
-    border: 2px solid #D46C04;
-    background-color: #FFFFFF;
+    border: 2px solid #f8b466;
     border-radius: 20px; /* Torna a borda arredondada */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);    background-color: #FFFFFF;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+    background-color:rgba(0, 0, 0, 0.2); ;  
+    background-image: url("../img/contatos_home.png");
     height: 500px;
-    width: 665px;
+    width: 465px;
 }
 
 .form-group_form-check{
@@ -117,15 +119,28 @@ body {
 .form-group label {
     display: block;
     margin-bottom: 5px;
+    color: #FFFFFF;
 }
 
+.form1 h2{
+    color: #FFFFFF;
+}
+
+.form1 ::placeholder{
+    color:  #FFFFFF;
+}
+
+.form-group::placeholder{
+    color: #FFFFFF;
+}
 
 .form-group input,
 .form-group textarea {
     width: 100%;
     padding: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #c9c8c7;
     border-radius: 5px;
+    background-color: #494848;
 }
 
 .form-group input:focus,
@@ -160,10 +175,11 @@ body {
 
 .form-check-input{
     margin-top: 10px;
+    color: #FFFFFF;
 }
 
 .btn-primary2{
-    width: 100%;
+    width: 170px;
     background-color: orange;
     color: white;
     border: none;
@@ -178,10 +194,11 @@ body {
 .briefing-container {
     display: none;  /* Oculto por padrão */
     position: fixed;
+    align-items: center;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: white;
+    background-color:#FFFFFF;
     padding: 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
@@ -192,16 +209,8 @@ body {
     max-height: 80vh;
     overflow-y: auto;
     overflow: visible; /* Permite que os elementos fiquem visíveis */
-    
 }
 
-.campos input, label{
-    margin-left: 10px;
-    margin-right: 10px;
-    flex: 1;
-    width: 100%; /* Ajuste para ocupar o espaço necessário */
-    gap: 5px;
-}
 
 .btn-fechar {
     margin-top: 10px;
@@ -237,16 +246,12 @@ body {
     align-items: right;
     flex-direction: column;
     gap: 10px;
-    border: 2px solid #D46C04;
-    background-color: #FFFFFF;
-    border-radius: 20px; /* Torna a borda arredondada */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);    background-color: #FFFFFF;
     margin-top: 10px;
     margin-bottom: 10px;
     margin-left: 10px;
     margin-right: 10px;
-    height: 300px;
-    overflow-y: auto;
+    width: 365px;
+    
 
 }
 
@@ -256,9 +261,9 @@ body {
     flex-direction: column;
     gap: 10px;
     border: 2px solid #D46C04;
-    background-color: #FFFFFF;
+    background-color:#FFFFFF;
     border-radius: 20px; /* Torna a borda arredondada */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);    background-color: #FFFFFF;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);    
     margin-top: 20px;
     margin-bottom: 20px;
     margin-left: 10px;
@@ -266,6 +271,18 @@ body {
     height: 300px;
     overflow-y: auto;
 
+}
+
+.campos2 label{
+    color: black;
+}
+
+.campos::placeholder{
+    color: #FFFFFF;
+}
+
+.campos2 .form-group input{
+    background-color: #FFFFFF;
 }
 
 .btn-enviar{
@@ -297,10 +314,22 @@ body {
     margin-bottom: 10px;
     margin-left: 10px;
     margin-right: 10px;
+    padding-top: 20px;
+    width: 500px;
 }
 
+
+.form-control{
+    color: #FFFFFF;
+}
+
+.input-group-addon{
+    color: #FFFFFF;
+}
+
+
 .form-control-file{
-    width: 100%;
+    width: 170px;
     background-color: orange;
     color: white;
     border: none;
@@ -499,6 +528,14 @@ body {
 .razao_mome input{
     display: block; /* Mantém os labels acima dos inputs */
     width: 90%;
+}
+
+.form-group_form-check label{
+    color: #FFFFFF;
+}
+
+.form-group_form-check {
+    padding-bottom: 20px;
 }
 
 

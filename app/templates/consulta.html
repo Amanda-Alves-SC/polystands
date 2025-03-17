@@ -63,6 +63,30 @@
     .filtrar:hover {
         background-color: #e69500;
     }
+
+    .btn-download {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: orange; /* Azul padrão */
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.2s ease;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-download:hover {
+    background-color: #e7810c; /* Azul mais escuro no hover */
+    transform: scale(1.05); /* Pequeno efeito de crescimento */
+}
+
+.btn-download:active {
+    transform: scale(0.95); /* Efeito ao clicar */
+}
+
     </style>
   </head>
   <body>
@@ -116,7 +140,7 @@
                         <td>${ag.email}</td>
                         <td>${ag.data}</td>
                         <td>${ag.descricao_projeto}</td>
-                        <td>${ag.doc_briefing}</td>
+                        <td>${ag.doc_briefing ? `<a href="/download/${ag.id}" target="_blank">Baixar</a>` : 'Nenhum arquivo'}</td>
                         <td>${ag.aceite_termo}</td>
 
                     </tr>`;
@@ -161,7 +185,7 @@ async function carregarAgendamentos() {
             <td>${ag.email}</td>
             <td class="data">${ag.data}</td>  <!-- Importante: Classe 'data' -->
             <td>${ag.descricao_projeto}</td>
-            <td>${ag.doc_briefing}</td>
+            <td>${ag.doc_briefing ? `<a href="/download/${ag.id}" target="_blank" class="btn-download" >Baixar</a>` : 'Nenhum arquivo'}</td>
             <td>${ag.aceite_termo}</td>
         </tr>`;
         tabela.innerHTML += linha;
@@ -200,6 +224,10 @@ function verificarData(dataLinha, inicio, fim) {
     if (fim && dataLinha > fim) return false; // Fora do intervalo final
 
     return true;
+}
+
+function baixarArquivo(fileId) {
+            window.location.href = `/download/${fileId}`;
 }
         </script>
   </body> 

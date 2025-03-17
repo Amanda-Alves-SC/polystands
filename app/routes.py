@@ -1,9 +1,11 @@
-from flask import Flask, render_template, request, url_for, redirect, session, jsonify # type: ignore 
+import io
+from flask import Flask, render_template, request, send_file, url_for, redirect, session, jsonify # type: ignore 
 from functools import wraps
 import mysql.connector # type: ignore
 from datetime import datetime, timedelta
 import json
 from app import app
+import base64
 
 # Configurações da conexão
 config = {
@@ -160,6 +162,7 @@ def agendamento():
                 
                 print("Agendamento feito com sucesso!")
                 return render_template('agendamento.html', mensagem_sucesso="Agendamento feito com sucesso!")
+
             
             except Exception as e:
                 connection.rollback()
@@ -192,8 +195,32 @@ def api_agendamentos():
             "email": row[3],
             "data": row[4],
             "descricao_projeto": row[5],
-            "doc_briefing": row[6],
+            "doc_briefing": base64.b64encode(row[6]).decode('utf-8') if row[6] else None,
             "aceite_termo": row[7]
         }
         for row in agendamentos
     ])
+
+@app.route("/download/<int:id>", methods=["GET"])
+def download_arquivo(id):
+    connection = mysql.connector.connect(**config)
+    cursor = connection.cursor()
+    
+    cursor.execute("SELECT doc_briefing FROM agendamento WHERE id = %s", (id,))
+    resultado = cursor.fetchone()
+    connection.close()
+
+    if resultado and resultado[0]:  
+        arquivo_binario = resultado[0]
+
+        # Criar um objeto de Bytes
+        arquivo_io = io.BytesIO(arquivo_binario)
+
+        return send_file(
+            arquivo_io, 
+            as_attachment=True, 
+            download_name=f"briefing_{id}.pdf",  # Nome do arquivo baixado
+            mimetype="application/pdf"  # Ajuste conforme necessário
+        )
+    else:
+        return "Arquivo não encontrado", 404
