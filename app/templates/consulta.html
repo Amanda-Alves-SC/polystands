@@ -4,90 +4,6 @@
     <title>Agendamento</title>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/consulta.css') }}">
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; align-items: center;display: flex;}
-        table { width: 80%; border-collapse: collapse; border-radius: 10px;overflow: hidden; background-color: white;box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);}
-        th, td { padding: 10px; border: 1px; border-color: #8d9c9c}
-        th {  background-color: rgb(255, 140, 0);color: white;font-weight: bold;}
-        td{text-align: left;}
-        tbody {
-        background-color: white;}
-        tr{background-color: white;}
-        .filtros-container {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 15px;
-    }
-
-    .filtros {
-        display: flex;
-        gap: 5px;
-        align-items: center;
-        padding: 10px;
-        border-radius: 10px;
-        box-shadow: 0px 4px 10px rgba(0.1, 0.1, 0.1, 0.1);
-        height: 50px;
-        width: 480px;
-        margin-left: 5px;
-    }
-
-    .searchInput, .startDate, .endDate {
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-size: 16px;
-        align-items: center;
-    }
-
-    .searchInput {
-        width: 100px;
-        height: 30px;
-        margin-top: 10px;
-    }
-
-    .startDate, .endDate {
-        width: 100px;
-    }
-
-    .filtrar {
-        background-color: darkorange;
-        color: white;
-        border-radius: 5px;
-        border: none;
-        font-size: 16px;
-        padding: 10px 15px;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-
-    .filtrar:hover {
-        background-color: #e69500;
-    }
-
-    .btn-download {
-    display: inline-block;
-    padding: 8px 15px;
-    background-color: orange; /* Azul padrão */
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: background 0.3s ease, transform 0.2s ease;
-    text-align: center;
-    border: none;
-    cursor: pointer;
-}
-
-.btn-download:hover {
-    background-color: #e7810c; /* Azul mais escuro no hover */
-    transform: scale(1.05); /* Pequeno efeito de crescimento */
-}
-
-.btn-download:active {
-    transform: scale(0.95); /* Efeito ao clicar */
-}
-
-    </style>
   </head>
   <body>
     <div class="faixa">
@@ -106,23 +22,25 @@
     </div>
 
     <body>
+            <div class="table-container">
                 <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Telefone</th>
-                        <th>Email</th>
-                        <th>Data</th>
-                        <th>Briefing</th>
-                        <th>Doc Briefing</th>
-                        <th>Permissão de uso de dados</th>
-                    </tr>
-                </thead>
-                <tbody id="tabela-agendamentos">
-                    <!-- Os dados serão inseridos aqui pelo JavaScript -->
-                </tbody>
-            </table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Telefone</th>
+                            <th>Email</th>
+                            <th>Data</th>
+                            <th>Briefing</th>
+                            <th>Doc Briefing</th>
+                            <th>Permissão de uso de dados</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabela-agendamentos">
+                        <!-- Os dados serão inseridos aqui pelo JavaScript -->
+                    </tbody>
+                </table>
+        </div>
     
         <script>
             async function carregarAgendamentos() {

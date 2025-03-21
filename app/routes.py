@@ -39,6 +39,31 @@ def home():
 def consulta():
     return render_template('consulta.html')
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    connection = mysql.connector.connect(**config)
+    cursor = connection.cursor()
+    if request.method == 'POST':
+        user = request.form['user']
+        pwd = request.form['pwd']
+        cursor.execute("SELECT * FROM user WHERE user=%s AND pwd=%s", (user, pwd))
+        result = cursor.fetchone()
+        connection.close()
+        if result:
+            session['user'] = user
+            return redirect('/links')
+        else:
+            return "Usuário ou senha inválidos"
+    return render_template('login.html')
+
+@app.route('/links')
+def links():
+    if 'user' not in session:
+        return redirect('/login')
+    return render_template('links.html')  # Sua tela de links protegida
+
+
+
 
 
 
@@ -59,7 +84,7 @@ def agendamento():
             Site = request.form.get('Site')
             data_entrega = request.form.get('data_entrega')
             Nome_Responsavel = request.form.get('Nome_Responsavel')
-            telefone = request.form.get('telefone')
+            telefone_responsavel = request.form.get('telefone_responsavel')
             Email = request.form.get('Email')
             Evento = request.form.get('Evento')
             Local = request.form.get('Local')
@@ -70,7 +95,11 @@ def agendamento():
             Valor_verba = request.form.get('Valor_verba')
             Contato = request.form.get('Contato')
             data_atual = request.form.get('data_atual')
-            Espaco_stand = request.form.get('Espaco_stand')
+            Ilha = request.form.get('Ilha')
+            ponto_ilha = request.form.get('ponto_ilha')
+            Esquina = request.form.get('Esquina')
+            Meio_Box = request.form.get('Meio_Box')
+            Passante = request.form.get('Passante')
             medida_Frente = request.form.get('medida_Frente')
             medida_Fundo = request.form.get('medida_Fundo')
             Area_total = request.form.get('Area_total')
@@ -96,48 +125,52 @@ def agendamento():
             produtos = request.form.get('produtos')
             listaMobiliario = request.form.get('listaMobiliario')
             descricao_projeto = json.dumps({
-                "Endereco": Endereco,
-                "Razao_social": Razao_social,
-                "Nome_Fantasia": Nome_Fantasia,
-                "Site": Site,
-                "data_entrega": data_entrega,
-                "Nome_Responsavel": Nome_Responsavel,
-                "telefone": telefone,
-                "Email": Email,
-                "Evento": Evento,
-                "Local": Local,
-                "Stand": Stand,
-                "data_evento": data_evento,
-                "Informacoes_adicionas": Informacoes_adicionas,
-                "Valor_verba": Valor_verba,
-                "Contato": Contato,
-                "data_atual": data_atual,
-                "Espaco_stand": Espaco_stand,
-                "medida_Frente": medida_Frente,
-                "medida_Fundo": medida_Fundo,
-                "Area_total": Area_total,
-                "Construido": Construido,
-                "Especial": Especial,
-                "Piso_elevado": Piso_elevado,
-                "Forracao": Forracao,
-                "mdf": mdf,
-                "Decorflex": Decorflex,
-                "Sala_VIP": Sala_VIP,
-                "Louge": Louge,
-                "Copa": Copa,
-                "Deposito": Deposito,
-                "Bar": Bar,
-                "Vitrines": Vitrines,
-                "Prateleiras": Prateleiras,
-                "Balcao": Balcao,
-                "Balcao_vitrine": Balcao_vitrine,
-                "Display": Display,
-                "Bancada": Bancada,
-                "Nicho": Nicho,
-                "Cores_empresa": Cores_empresa,
-                "produtos": produtos,
-                "listaMobiliario": listaMobiliario
-            })
+            "Endereco": Endereco,
+            "Razao_social": Razao_social,
+            "Nome_Fantasia": Nome_Fantasia,
+            "Site": Site,
+            "data_entrega": data_entrega,
+            "Nome_Responsavel": Nome_Responsavel,
+            "telefone_responsavel": telefone_responsavel,
+            "Email": Email,
+            "Evento": Evento,
+            "Local": Local,
+            "Stand": Stand,
+            "data_evento": data_evento,
+            "Informacoes_adicionas": Informacoes_adicionas,
+            "Valor_verba": Valor_verba,
+            "Contato": Contato,
+            "data_atual": data_atual,
+            "Ilha": Ilha,
+            "ponto_ilha": ponto_ilha,
+            "Esquina": Esquina,
+            "Meio_Box": Meio_Box,
+            "Passante": Passante,
+            "medida_Frente": medida_Frente,
+            "medida_Fundo": medida_Fundo,
+            "Area_total": Area_total,
+            "Construido": Construido,
+            "Especial": Especial,
+            "Piso_elevado": Piso_elevado,
+            "Forracao": Forracao,
+            "mdf": mdf,
+            "Decorflex": Decorflex,
+            "Sala_VIP": Sala_VIP,
+            "Louge": Louge,
+            "Copa": Copa,
+            "Deposito": Deposito,
+            "Bar": Bar,
+            "Vitrines": Vitrines,
+            "Prateleiras": Prateleiras,
+            "Balcao": Balcao,
+            "Balcao_vitrine": Balcao_vitrine,
+            "Display": Display,
+            "Bancada": Bancada,
+            "Nicho": Nicho,
+            "Cores_empresa": Cores_empresa,
+            "produtos": produtos,
+            "listaMobiliario": listaMobiliario
+        }, indent=4, ensure_ascii=False)
 
             
             doc_briefing = request.files.get('doc_briefing')

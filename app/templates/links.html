@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Links da aplicação</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/links.css') }}">
+  </head>
+  <body>
+    <div class="faixa">
+        <div class="logo">
+          <img src="{{ url_for('static', filename='img/logo_poly.png') }}">
+        </div>
+    </div>
+
+    <div class="links"><h4>Links da página</h4>
+        <div class="links-container">
+            <a href="home"><button class="home">Home</button></a>
+            <a href="agendamento"><button class="agendamento">Agendar</button></a>
+            <a href="consulta"><button class="consulta">Consulta</button></a>
+        </div>
+    </div>
+  </body>
+
+ 

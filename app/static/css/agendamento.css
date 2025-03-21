@@ -104,7 +104,7 @@ body {
 }
 
 .logo img{
-    margin-right: 770px;
+    margin-right: 900px;
     margin-top: 1px;
     width: 96px;  /* Ajuste o tamanho conforme necessário */
     
@@ -321,6 +321,10 @@ body {
 
 .form-control{
     color: #FFFFFF;
+}
+
+.campos2 .form-control{
+    color: black;
 }
 
 .input-group-addon{
