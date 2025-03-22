@@ -226,3 +226,34 @@ body {
     margin-bottom: 15px; /* Dá espaço entre o título e as imagens */
 
 }
+
+.stand img{
+    -webkit-filter:grayscale(100%);
+}
+
+.stand img:hover{
+    -webkit-filter:grayscale(0%);
+    transition: 1s;
+    transform: scale(1.1);
+}
+
+
+.quiosque img{
+    -webkit-filter:grayscale(100%);
+}
+
+.quiosque img:hover{
+    -webkit-filter:grayscale(0%);
+    transition: 1s;
+    transform: scale(1.1);
+}
+
+.cenografia img{
+    -webkit-filter:grayscale(100%);
+}
+
+.cenografia img:hover{
+    -webkit-filter:grayscale(0%);
+    transition: 1s;
+    transform: scale(1.1);
+}
