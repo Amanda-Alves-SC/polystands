@@ -9,7 +9,13 @@ body {
     background-size: cover; /* Faz a imagem cobrir toda a tela */
     background-position: center; /* Centraliza a imagem */
     /*padding-top: 220px;  Garante que o conteúdo fique abaixo da faixa */
-
+    font-family: Arial, sans-serif;
+    text-align: center;
+    width: 80%;
+    margin-left: 150px;
+    padding-top: 20px;
+    overflow-y: auto;
+    border-radius: 1px;
 }
 
 /* Botoes */
@@ -78,14 +84,37 @@ body {
     flex-direction: row;
 }
 
-body { font-family: Arial, sans-serif; text-align: center; align-items: center;display: flex;}
-table { border-collapse: collapse; border-radius: 10px;background-color: white;box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);}
-th, td { padding: 10px; border: 1px; border-color: #8d9c9c}
-th {  background-color: rgb(255, 140, 0);color: white;font-weight: bold;}
-td{text-align: left;}
+table { 
+    border-collapse: collapse; 
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td { 
+    padding: 10px;
+     border: 1px; 
+     border-color: #8d9c9c
+    }
+
+th {  
+    background-color: rgb(255, 140, 0);
+    color: white;
+    font-weight: bold;
+}
+
+td{
+    text-align: left;
+}
+
 tbody {
-background-color: white;}
-tr{background-color: white;}
+background-color: white;
+}
+
+tr{
+    background-color: white;
+}
+
 .filtros-container {
 display: flex;
 justify-content: center;
@@ -163,7 +192,7 @@ transform: scale(0.95); /* Efeito ao clicar */
 .tabela-container {
 height: 600px; /* Defina a altura fixa desejada */
 overflow-y: auto; /* Adiciona rolagem vertical se necessário */
-width: 70%; /* Garante que o contêiner siga o tamanho da tabela */
+max-width: 70%; /* Garante que o contêiner siga o tamanho da tabela */
 margin: auto; /* Centraliza a tabela */
 border-radius: 10px;
 box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);

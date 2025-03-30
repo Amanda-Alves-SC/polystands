@@ -37,6 +37,8 @@ def home():
 
 @app.route('/consulta')
 def consulta():
+    if 'user' not in session:
+        return redirect('/login')
     return render_template('consulta.html')
 
 @app.route('/login', methods=['GET', 'POST'])
