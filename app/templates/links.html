@@ -1,24 +1,45 @@
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
-    <title>Links da aplicação</title>
     <meta charset="utf-8">
+    <title>Links da aplicação</title>
+
+    <!-- Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/links.css') }}">
+
+    <!-- JS Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </head>
-  <body>
-    <div class="faixa">
-        <div class="logo">
-          <img src="{{ url_for('static', filename='img/logo_poly.png') }}">
-        </div>
-    </div>
 
-    <div class="links"><h4>Links da página</h4>
-        <div class="links-container">
-            <a href="home"><button class="home">Home</button></a>
-            <a href="agendamento"><button class="agendamento">Agendar</button></a>
-            <a href="consulta"><button class="consulta">Consulta</button></a>
+  <body style="background-color: #f8f9fa;">
+
+    <!-- NAV -->
+    <nav class="faixa d-flex align-items-center justify-content-between flex-wrap p-2"
+      style="background: linear-gradient(-30deg, #F38E29, #FFFFFF); position: fixed; top: 0; width: 100%; z-index: 1000;">
+      
+      <div class="container-fluid d-flex align-items-center">
+        <a href="home" class="d-flex align-items-center ms-3">
+          <img src="{{ url_for('static', filename='img/logo_poly.png') }}" alt="Logo" height="40" class="me-2">
+        </a>
+      </div>
+    </nav>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="container d-flex flex-column align-items-center justify-content-center" style="margin-top: 100px;">
+      <div class="links text-center">
+        <h4 class="mb-4">Links da aplicação</h4>
+
+        <div class="links-container d-flex flex-wrap justify-content-center gap-3">
+          <a href="home"><button class="home btn btn-outline-dark">Home</button></a>
+          <a href="agendamento"><button class="agendamento btn-outline-dark">Agendar</button></a>
+          <a href="consulta"><button class="consulta btn-outline-dark">Consulta</button></a>
         </div>
-    </div>
+      </div>
+    </main>
+
   </body>
-
- 
+</html>

@@ -124,6 +124,7 @@ celerybeat.pid
 # Environments
 .env
 .venv
+conexao.py
 env/
 venv/
 ENV/

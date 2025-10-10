@@ -61,35 +61,62 @@ body {
     transition: 0.3s;
 }
 
-/* Faixa do topo */
 .faixa {
-    width: 100%;
-    height: 75px;
-    background: linear-gradient(-30deg, #F38E29, #FFFFFF);
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    justify-content: center; /* Centraliza os botões */
-    gap: 5px; /* Reduz o espaçamento entre os botões */
+  background: linear-gradient(-30deg, #F38E29, #FFFFFF);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 8px 16px;
 }
 
-.logo{
-    margin-right: 300px;
-    margin-top: 1px;
-    display: flex;
-    flex-direction: row;
+/* Remove bordas padrão do Bootstrap no botão do menu */
+.navbar-toggler {
+  border: none;
 }
 
-table { 
-    border-collapse: collapse; 
-    border-radius: 10px;
-    background-color: white;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+/* Alinha os botões */
+.nav-link button {
+  background-color: #d76b00;
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 8px 20px;
+  border-radius: 6px;
+  transition: 0.3s;
 }
+
+.nav-link button:hover {
+  background-color: #b55a00;
+  color: #FFFFFF;
+}
+
+/* Ícone hambúrguer branco */
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(50, 50, 50, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+
+.table-container {
+    max-height: 400px; /* altura fixa */
+    overflow-y: auto; /* rolagem vertical */
+    overflow-x: auto; /* rolagem horizontal se necessário */
+    border: 1px solid #ccc; /* borda para destacar */
+}
+
+.table-container table {
+    width: 100%; /* tabela ocupa toda largura */
+    border-collapse: collapse; /* remove espaçamento entre células */
+}
+
+.table-container th,
+.table-container td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+    border-collapse: collapse;
+}
+
 
 th, td { 
     padding: 10px;
@@ -131,6 +158,17 @@ box-shadow: 0px 4px 10px rgba(0.1, 0.1, 0.1, 0.1);
 height: 50px;
 width: 480px;
 margin-left: 5px;
+}
+
+@media(max-width: 768px){
+    .filtros{
+        height: 50px;
+        width: 240px;
+    }
+
+    body{
+        align-items: center;
+    }
 }
 
 .searchInput, .startDate, .endDate {

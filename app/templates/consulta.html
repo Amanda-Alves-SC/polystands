@@ -1,151 +1,152 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <title>Agendamento</title>
+<head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Consulta Agendamentos</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- CSS customizado -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/consulta.css') }}">
-  </head>
-  <body>
-    <div class="faixa">
-        <div class="logo">
-          <img src="{{ url_for('static', filename='img/logo_poly.png') }}" width="100px" height="70px">
-          <div class="filtros">
-            <input type="text" id="searchInput" class="searchInput" placeholder="Pesquisar..." style="margin-bottom: 10px; padding: 5px;">
-            <input type="date" id="startDate" class="startDate" placeholder="Data Inicial" style="margin: 10px;">
-            <input type="date" id="endDate" class="endDate" placeholder="Data Final" style="margin: 10px;">
-            <button onclick="filtrarTabela()" class="filtrar">Filtrar</button>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="faixa navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="home">
+                <img src="{{ url_for('static', filename='img/logo_poly.png') }}" alt="Logo" height="40">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="home" class="nav-link text-right"><button class="btn btn-warning">Home</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agendamento" class="nav-link text-right"><button class="btn btn-warning">Agendar</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="consulta" class="nav-link text-right"><button class="btn btn-warning">Consulta</button></a>
+                    </li>
+                </ul>
+            </div>
         </div>
+    </nav>
+
+    <!-- Conteúdo principal -->
+    <div class="container mt-5 pt-5 d-flex flex-column align-items-center justify-content-center">
+        <!-- Filtros -->
+        <div class="row mb-3">
+            <div class="col-12 col-md-6 col-lg-4 mb-2">
+                <input type="text" id="searchInput" class="form-control" placeholder="Pesquisar...">
+            </div>
+            <div class="col-6 col-md-3 col-lg-2 mb-2">
+                <input type="date" id="startDate" class="form-control" placeholder="Data Inicial">
+            </div>
+            <div class="col-6 col-md-3 col-lg-2 mb-2">
+                <input type="date" id="endDate" class="form-control" placeholder="Data Final">
+            </div>
+            <div class="col-12 col-md-12 col-lg-4 mb-2">
+                <button onclick="filtrarTabela()" class="filtrar btn btn-primary btn-block">Filtrar</button>
+            </div>
         </div>
-        <a href="home"><button class="home">Home</button></a>
-        <a href="agendamento"><button class="agendamento">Agendar</button></a>
-        <a href="consulta"><button class="consulta">Consulta</button></a>
+
+        <!-- Tabela responsiva -->
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="table-container">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>Email</th>
+                        <th>Data</th>
+                        <th>Briefing</th>
+                        <th>Doc Briefing</th>
+                        <th>Permissão de uso de dados</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-agendamentos">
+                    <!-- Dados serão inseridos pelo JS -->
+                </tbody>
+            </table>
+        </div>
     </div>
 
-    <body>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nome</th>
-                            <th>Telefone</th>
-                            <th>Email</th>
-                            <th>Data</th>
-                            <th>Briefing</th>
-                            <th>Doc Briefing</th>
-                            <th>Permissão de uso de dados</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tabela-agendamentos">
-                        <!-- Os dados serão inseridos aqui pelo JavaScript -->
-                    </tbody>
-                </table>
-        </div>
-    
-        <script>
-            async function carregarAgendamentos() {
-                const resposta = await fetch('/api/agendamentos');
-                const agendamentos = await resposta.json();
-                
-                const tabela = document.getElementById('tabela-agendamentos');
-                tabela.innerHTML = '';  // Limpa a tabela antes de preencher
-    
-                agendamentos.forEach(ag => {
-                    const linha = `<tr>
-                        <td>${ag.id}</td>
-                        <td>${ag.nome}</td>
-                        <td>${ag.telefone}</td>
-                        <td>${ag.email}</td>
-                        <td>${ag.data}</td>
-                        <td>${ag.descricao_projeto}</td>
-                        <td>${ag.doc_briefing ? `<a href="/download/${ag.id}" target="_blank">Baixar</a>` : 'Nenhum arquivo'}</td>
-                        <td>${ag.aceite_termo}</td>
+    <!-- JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-                    </tr>`;
-                    tabela.innerHTML += linha;
-                });
-            }
-    
+    <script>
+        async function carregarAgendamentos() {
+            const resposta = await fetch('/api/agendamentos');
+            const agendamentos = await resposta.json();
+
+            const tabela = document.getElementById('tabela-agendamentos');
+            tabela.innerHTML = '';
+
+            agendamentos.forEach(ag => {
+                const linha = `<tr>
+                    <td>${ag.id}</td>
+                    <td>${ag.nome}</td>
+                    <td>${ag.telefone}</td>
+                    <td>${ag.email}</td>
+                    <td class="data">${ag.data}</td>
+                    <td>${ag.descricao_projeto ? `<a href="/download_projeto/${ag.id}" target="_blank" class="btn btn-sm btn-outline-primary">Baixar Projeto</a>` : 'Nenhum arquivo'}</td>
+                    <td>${ag.doc_briefing ? `<a href="/download/${ag.id}" target="_blank" class="btn btn-sm btn-outline-primary">Baixar</a>` : 'Nenhum arquivo'}</td>
+                    <td>${ag.aceite_termo}</td>
+                </tr>`;
+                tabela.innerHTML += linha;
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
             carregarAgendamentos();
-        </script>
 
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-    carregarAgendamentos();
+            // Filtro de pesquisa
+            document.getElementById("searchInput").addEventListener("keyup", filtrarTabela);
+            document.getElementById("startDate").addEventListener("change", filtrarTabela);
+            document.getElementById("endDate").addEventListener("change", filtrarTabela);
+        });
 
-    // Filtro de pesquisa por texto
-    document.getElementById("searchInput").addEventListener("keyup", function() {
-        filtrarTabela();
-    });
+        function filtrarTabela() {
+            const termoPesquisa = document.getElementById("searchInput").value.toLowerCase();
+            const dataInicial = document.getElementById("startDate").value;
+            const dataFinal = document.getElementById("endDate").value;
 
-    // Filtro de datas
-    document.getElementById("startDate").addEventListener("change", function() {
-        filtrarTabela();
-    });
+            const linhas = document.querySelectorAll("#tabela-agendamentos tr");
 
-    document.getElementById("endDate").addEventListener("change", function() {
-        filtrarTabela();
-    });
-});
+            linhas.forEach(linha => {
+                const textoLinha = linha.textContent.toLowerCase();
+                const dataTexto = linha.querySelector(".data").textContent.trim();
+                const dataLinha = formatarData(dataTexto);
 
-async function carregarAgendamentos() {
-    const resposta = await fetch('/api/agendamentos');
-    const agendamentos = await resposta.json();
-    
-    const tabela = document.getElementById('tabela-agendamentos');
-    tabela.innerHTML = '';  
+                const atendeTexto = textoLinha.includes(termoPesquisa);
+                const atendeData = verificarData(dataLinha, dataInicial, dataFinal);
 
-    agendamentos.forEach(ag => {
-        const linha = `<tr>
-            <td>${ag.id}</td>
-            <td>${ag.nome}</td>
-            <td>${ag.telefone}</td>
-            <td>${ag.email}</td>
-            <td class="data">${ag.data}</td>  <!-- Importante: Classe 'data' -->
-            <td>${ag.descricao_projeto}</td>
-            <td>${ag.doc_briefing ? `<a href="/download/${ag.id}" target="_blank" class="btn-download" >Baixar</a>` : 'Nenhum arquivo'}</td>
-            <td>${ag.aceite_termo}</td>
-        </tr>`;
-        tabela.innerHTML += linha;
-    });
-}
+                linha.style.display = (atendeTexto && atendeData) ? "" : "none";
+            });
+        }
 
-function filtrarTabela() {
-    const termoPesquisa = document.getElementById("searchInput").value.toLowerCase();
-    const dataInicial = document.getElementById("startDate").value;
-    const dataFinal = document.getElementById("endDate").value;
+        function formatarData(data) {
+            const partes = data.split("/");
+            return partes.length === 3 ? `${partes[2]}-${partes[1]}-${partes[0]}` : "";
+        }
 
-    const linhas = document.querySelectorAll("#tabela-agendamentos tr");
-
-    linhas.forEach(linha => {
-        const textoLinha = linha.textContent.toLowerCase();
-        const dataTexto = linha.querySelector(".data").textContent.trim();
-        const dataLinha = formatarData(dataTexto); // Converte para YYYY-MM-DD
-
-        const atendeTexto = textoLinha.includes(termoPesquisa);
-        const atendeData = verificarData(dataLinha, dataInicial, dataFinal);
-
-        linha.style.display = (atendeTexto && atendeData) ? "" : "none";
-    });
-}
-
-function formatarData(data) {
-    const partes = data.split("/");
-    return partes.length === 3 ? `${partes[2]}-${partes[1]}-${partes[0]}` : ""; // Formato YYYY-MM-DD
-}
-
-function verificarData(dataLinha, inicio, fim) {
-    if (!inicio && !fim) return true; // Sem filtro de data
-    if (!dataLinha) return false; // Linha sem data válida
-
-    if (inicio && dataLinha < inicio) return false; // Fora do intervalo inicial
-    if (fim && dataLinha > fim) return false; // Fora do intervalo final
-
-    return true;
-}
-
-function baixarArquivo(fileId) {
-            window.location.href = `/download/${fileId}`;
-}
-        </script>
-  </body> 
+        function verificarData(dataLinha, inicio, fim) {
+            if (!inicio && !fim) return true;
+            if (!dataLinha) return false;
+            if (inicio && dataLinha < inicio) return false;
+            if (fim && dataLinha > fim) return false;
+            return true;
+        }
+    </script>
+</body>
+</html>

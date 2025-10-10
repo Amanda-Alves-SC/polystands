@@ -1,17 +1,45 @@
 body {
-    height: 100vh; /* Garante que ocupe toda a tela */
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                      url("../img/teste_home.jpeg"); 
-    background-size: cover;
-    background-position: center;
-    text-align: left;
-    padding-top: 340px; /* Garante que o conteúdo fique abaixo da faixa */
+  margin: 0;
+  padding: 0;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                    url("../img/teste_home.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* opcional, cria efeito parallax */
+  color: white;
+  font-family: sans-serif;
+  min-height: 100vh; /* permite crescer */
 }
+
+/* Telas menores */
+@media(max-width: 768px) {
+  body {
+    background-image: linear-gradient(rgba(1, 1, 1, 0.918), rgba(1, 1, 1, 0.918)), 
+                    url("../img/teste_home.jpeg");/* remove a imagem de fundo */
+    background-color: rgba(0, 0, 0, 0.7); /* mesma cor do formulário */
+  }
+
+}
+
+
+/* Apresentação */
+.apresentacao {
+    text-align: center;
+    color: white;
+    margin-top: 200px;
+    margin-bottom: 70px;
+    text-shadow: #2B2D42;
+}
+
+
+@media (max-width: 768px) {
+    .servicos-container {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+}
+
 
 /* Botoes */
 .agendamento{
@@ -59,48 +87,43 @@ body {
     background-color: #d97706; /* Efeito ao passar o mouse */
 }
 
-/* Faixa do topo */
 .faixa {
-    width: 100%;
-    height: 75px;
-    background: linear-gradient(-30deg, #F38E29, #FFFFFF);
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    justify-content: center; /* Centraliza os botões */
-    gap: 0px; /* Reduz o espaçamento entre os botões */
+  background: linear-gradient(-30deg, #F38E29, #FFFFFF);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 8px 16px;
 }
 
-/* Logo */
-.logo {
-    margin-right: 900px;
+/* Remove bordas padrão do Bootstrap no botão do menu */
+.navbar-toggler {
+  border: none;
 }
 
-.logo-contatos {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    font-size: 16px;
-    color: white;
+/* Alinha os botões */
+.nav-link button {
+  background-color: #d76b00;
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 8px 20px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.nav-link button:hover {
+  background-color: #b55a00;
+}
+
+/* Ícone hambúrguer branco */
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(50, 50, 50, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.slogan h1{
     font-weight: bold;
-    margin-right: 290px;
-}
-
-/* Apresentação */
-.apresentacao {
-    text-align: center;
-    color: white;
-    margin-top: 100px;
-    text-shadow: #2B2D42;
-}
-
-.slogan {
-    font-weight: bold;
-    font-size: 50px;
+    font-size: 60px;
     font-family: sans-serif;
     margin-top: 20px;
     text-align: center;
@@ -109,6 +132,8 @@ body {
     animation-name: slidein;
 
 }
+
+
 
 .frase_efeito {
     font-weight: lighter;
@@ -134,28 +159,55 @@ body {
     }
   }
 
+@keyframes go-back {
+  from {
+    transform: translateX(100px);
+  }
+  to {
+    transform: translateX(0);
+  }
+} 
+
 /* Contatos */
 .contatos {
-    background-image: url("../img/contatos_home.png");
-    background-size: cover;
-    background-position: center;
     width: 100%;
     height: 90px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    gap: 30px;
-    padding: 0 20px;
+    align-items: start;
+    gap: 5px;
+    
 }
 
+
+
 /* Ícones e textos dentro da seção de contatos */
-.whatsapp, .endereco, .contato_email {
+.whatsapp, .contato_email {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 16px;
+    font-size: 11px;
     color: white;
-    font-weight: bold;
+}
+
+.endereco{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    color: white;
+}
+
+
+.infos{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 40px;
+
 }
 
 /* Ajustando o layout responsivo */
@@ -166,9 +218,20 @@ body {
         padding: 10px;
     }
 
+    .infos{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
 
-    .slogan {
-        font-size: 30px;
+    .endereco{
+        margin-top: 90px;
+    }
+
+
+    .slogan h1{
+        font-size: 60px;
+        
     }
 
     .frase_efeito {
@@ -179,29 +242,42 @@ body {
 .servicos {
     margin-top: 30px;
     display: flex;
-    flex-direction: column; /* Organiza os itens em coluna */
-    align-items: center; /* Centraliza os itens no eixo horizontal */
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     gap: 20px;
     background-image: url("../img/teste__home_projetos.png");
-    height: 600px;
+    padding-top: 20px;
+    padding-bottom: 70px;
+    padding: 20px;
     width: 100%;
     background-size: cover;
     background-position: center;
     text-align: center;
     color: white;
     font-family: serif;
-    padding-top: 20px; /* Ajuste para afastar o título do topo */
-    padding-bottom: 70px; /* Garante que o conteúdo fique abaixo da faixa */
-    background-color: rgba(0, 0, 0, 0.4); /* Fundo escuro translúcido */
+    padding-top: 20px;
+    padding-bottom: 70px;
+    background-color: rgba(0, 0, 0, 0.4);
     padding: 20px;
-    border-radius: 1px; /* Cantos arredondados para um efeito moderno */
+    border-radius: 1px;
+
+    /* efeito inicial escondido */
     opacity: 0;
     transform: translateY(50px);
     transition: all 0.6s ease-out;
-
 }
 
+.servicos::before {
+  content: "";
+  position: absolute;
+  top:0; left:0; right:0; bottom:0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: -1;
+}
+
+
+/* quando visível */
 .servicos.show {
     opacity: 1;
     transform: translateY(0);
@@ -227,36 +303,89 @@ body {
 
 }
 
+.endereco p{
+    color: white;
+   flex-wrap: wrap;
+
+}
+
+.whatsapp p, .contato_email p{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    color: white;
+}
+
+.logo-contatos p{
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    color: white;
+}
+
+.logo-contatos{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
 .stand img{
-    -webkit-filter:grayscale(100%);
+    -webkit-filter:grayscale(0%);
+    transition: transform 0.2s ease-in-out;
+
 }
 
 .stand img:hover{
     -webkit-filter:grayscale(0%);
-    transition: 1s;
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
+    transition: transform 0.2s ease-in-out;
 }
 
 
 .quiosque img{
-    -webkit-filter:grayscale(100%);
+    -webkit-filter:grayscale(0%);
+    transition: transform 0.2s ease-in-out;
 }
 
 .quiosque img:hover{
     -webkit-filter:grayscale(0%);
-    transition: 1s;
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
+    transition: transform 0.2s ease-in-out;
 }
 
 .cenografia img{
-    -webkit-filter:grayscale(100%);
+    -webkit-filter:grayscale(0%);
+    transition: transform 0.2s ease-in-out;
 }
 
 .cenografia img:hover{
     -webkit-filter:grayscale(0%);
-    transition: 1s;
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
+    transition: transform 0.2s ease-in-out;
 }
+
+/* Always set the map height explicitly to define the size of the div
+ * element that contains the map. */
+gmp-map {
+  height: 260px;
+  width: 350px;
+}
+
+.linha-visual {
+    width: 80%;
+    height: 2px;
+    background-color: rgb(119, 116, 116); /* cor */
+    border-radius: 1px;
+    margin: 30px auto;
+    position: relative; 
+    z-index: 10; /* fica por cima */
+    margin-top: 80px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    
+}
+
