@@ -11,6 +11,10 @@ import io
 from app.conexao import config, key
 
 
+@app.route("/")
+def index():
+    return redirect("/home")
+
 
 #Etapas de agendamento
 @app.route('/agendamento')
