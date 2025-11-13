@@ -8,21 +8,8 @@ from app import app
 import base64
 from docx import Document
 import io
-from app.conexao import config
-from app.conexao import key  # importa sua chave (sem subir pro GitHub!)
+from app.conexao import config, key
 
-
-
-
-# Test de conecta ao banco
-try:
-    connection = mysql.connector.connect(**config)
-    print("Conexão bem-sucedida!")
-except mysql.connector.Error as err:
-    print(f"Erro: {err}")
-finally:
-    if connection.is_connected():
-        connection.close()
 
 
 #Etapas de agendamento
