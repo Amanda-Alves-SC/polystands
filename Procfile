@@ -1,1 +1,1 @@
-web: gunicorn polystands:app
+gunicorn app:application --bind 0.0.0.0:$PORT
