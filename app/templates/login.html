@@ -2,77 +2,104 @@
 <html lang="pt-br">
   <head>
     <title>Login</title>
-    <meta charset="utf-8">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
+    <meta charset="utf-8" />
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='img/logo_poly.png') }}"
+      type="image/png"
+    />
+
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='css/login.css') }}"
+    />
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
   </head>
   <body>
+    <nav class="navbar navbar-expand-lg faixa">
+      <div class="container-fluid">
+        <!-- Logo -->
+        <a class="navbar-brand" href="home">
+          <img
+            src="{{ url_for('static', filename='img/logo_poly.png') }}"
+            alt="Logo"
+            height="40"
+          />
+        </a>
 
-<nav class="navbar navbar-expand-lg faixa">
-  <div class="container-fluid">
-    <!-- Logo -->
-    <a class="navbar-brand" href="home">
-      <img src="{{ url_for('static', filename='img/logo_poly.png') }}" alt="Logo" height="40">
-    </a>
+        <!-- Botão de menu (hambúrguer) -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Alternar navegação"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <!-- Botão de menu (hambúrguer) -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+        <!-- Itens do menu -->
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav justify-content-end">
+            <li class="nav-item justify-content-end">
+              <a href="home" class="nav-link text-right">
+                <button class="home justify-content-end">Home</button>
+              </a>
+            </li>
+            <li class="nav-item justify-content-end">
+              <a href="agendamento" class="nav-link text-right">
+                <button class="agendamento justify-content-end">Agendar</button>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="form-group col-12 col-md-8 col-lg-6">
+          <form action="/login" method="POST">
+            <h2 class="form-title text-center mb-4">Insira suas credenciais</h2>
 
-    <!-- Itens do menu -->
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav justify-content-end">
-        <li class="nav-item justify-content-end">
-          <a href="home" class="nav-link text-right">
-            <button class="home justify-content-end">Home</button>
-          </a>
-        </li>
-        <li class="nav-item justify-content-end">
-          <a href="agendamento" class="nav-link text-right">
-            <button class="agendamento justify-content-end">Agendar</button>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-
-
-
-
-
-
-
-    
-
-<div class="container">
-  <div class="row justify-content-center">
-      <div class="form-group col-12 col-md-8 col-lg-6">
-        <form action="/login" method="POST">
-          <h2 class="form-title text-center mb-4">Insira suas credenciais</h2>
-          
             <label for="user" class="form-label">Usuário:</label>
-            <input type="text" name="user" id="user" class="form-control" required>
-          
+            <input
+              type="text"
+              name="user"
+              id="user"
+              class="form-control"
+              required
+            />
+
             <label for="pwd" class="form-label">Senha:</label>
-            <input type="password" name="pwd" id="pwd" class="form-control" required>
-          
-          <div class="enviar">
-          <button type="submit" class="btn btn-primary w-100">Entrar</button>
-          </div>
-        </form>
+            <input
+              type="password"
+              name="pwd"
+              id="pwd"
+              class="form-control"
+              required
+            />
+
+            <div class="enviar">
+              <button type="submit" class="btn btn-primary w-100">
+                Entrar
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-</div>
-
-
-
   </body>
+</html>

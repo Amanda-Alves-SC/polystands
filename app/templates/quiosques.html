@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
-    <title>Home</title>
+    <title>Quiosques</title>
     <meta charset="utf-8" />
     <script
       src="https://maps.googleapis.com/maps/api/js?key={{ key }}&libraries=maps,marker&v=beta"
@@ -13,6 +13,7 @@
       href="{{ url_for('static', filename='img/logo_poly.png') }}"
       type="image/png"
     />
+
     <link
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
       rel="stylesheet"
@@ -20,7 +21,7 @@
     <link
       rel="stylesheet"
       type="text/css"
-      href="{{ url_for('static', filename='css/home.css') }}"
+      href="{{ url_for('static', filename='css/quiosques.css') }}"
     />
     <!-- Bootstrap Font Icon CSS -->
     <link
@@ -37,15 +38,6 @@
   <body>
     <nav class="faixa navbar navbar-expand-lg">
       <div class="container-fluid">
-        <!-- Logo -->
-        <a class="navbar-brand" href="home">
-          <img
-            src="{{ url_for('static', filename='img/logo_poly.png') }}"
-            alt="Logo"
-            height="40"
-          />
-        </a>
-
         <!-- Botão de menu (hambúrguer) -->
         <button
           class="navbar-toggler"
@@ -67,7 +59,7 @@
           <ul class="navbar-nav text-right">
             <li class="nav-item text-right">
               <a href="home" class="nav-link">
-                <button class="home">Home</button>
+                <button class="home justify-content-end">Home</button>
               </a>
             </li>
             <li class="nav-item text-right">
@@ -81,76 +73,31 @@
     </nav>
 
     <div class="apresentacao">
-      <div class="slogan">
-        <h1>
-          O seu parceiro para<br />
-          Feiras e Eventos
-        </h1>
+      <div class="Quiosques">
+        <h1>Quiosques</h1>
+        <p>
+          Um quiosque vai muito além de um ponto de venda —<br />
+          é um ponto de encontro entre marca e pessoas.<br />
+        </p>
+
+        <p>
+          Cada detalhe é pensado para atrair olhares, despertar curiosidade<br />
+          e transformar a interação em uma experiência marcante.<br />
+        </p>
+
+        <p>Aqui, Criamos presença, conexão e oportunidade.</p>
       </div>
-      <div class="frase_efeito">
-        <h3>
-          A TUANDO HÁ 26 ANOS NA ÁREA, <br />SOMOS ESPECIALIZADOS NA CRIAÇÃO
-          <br />E EXECUÇÃO DE PROJETOS DE STANDS<br />
-          TRANSFORMAR SEU SONHO EM REALIDADE É O NOSSO COMPROMISSO
-        </h3>
+      <div>
+        <img
+          src="{{ url_for('static', filename='img/teste_quiosque2.webp') }}"
+          width="560px"
+          height="300px"
+        />
       </div>
     </div>
 
-    <!--CONTÚDO DA HOME-->
-
-    <div class="servicos">
-      <h4>Projetos</h4>
-      <!-- Título no topo -->
-      <div class="servicos-container">
-        <div class="stand">
-          <a href="stands">
-            <img
-              src="{{ url_for('static', filename='img/teste_pdv.jpg') }}"
-              width="260px"
-              height="200px"
-            />
-          </a>
-          <h3>Stands</h3>
-          <p>Projeto, execução e montagem <br />de Stands</p>
-        </div>
-
-        <div class="cenografia">
-          <a href="cenografia">
-            <img
-              src="{{ url_for('static', filename='img/teste_cenografia.jpg') }}"
-              width="260px"
-              height="200px"
-            />
-          </a>
-          <h3>Cenografia</h3>
-          <p>Especialistas em cenografias para <br />eventos empresariais</p>
-        </div>
-
-        <div class="quiosque">
-          <a href="quiosques">
-            <img
-              src="{{ url_for('static', filename='img/teste_quiosque.jpg') }}"
-              width="260px"
-              height="200px"
-            />
-          </a>
-          <h3>Quiosques</h3>
-          <p>Projeto, execução e montagem <br />de quiosques</p>
-        </div>
-      </div>
-
-      <h4>Por que contratar a Poly Stands</h4>
-      <p>
-        Se você busca inovação, qualidade e um atendimento personalizado para a
-        criação de stands e soluções para eventos<br />
-        a Poly Stands é a escolha certa! Com uma equipe altamente qualificada e
-        anos de experiência no mercado<br />
-        entregamos projetos sob medida para destacar sua marca e garantir o
-        sucesso da sua participação em feiras e exposições.
-      </p>
-
+    <div class="info_linha">
       <div class="linha-visual"></div>
-
       <div class="infos">
         <div class="contatos">
           <h1>Canais de comunicação</h1>
@@ -184,26 +131,5 @@
         </div>
       </div>
     </div>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("show");
-              } else {
-                entry.target.classList.remove("show");
-              }
-            });
-          },
-          { threshold: 0.05 }
-        ); // ativa quando 10% do elemento aparece na tela
-
-        document.querySelectorAll(".servicos").forEach((el) => {
-          observer.observe(el);
-        });
-      });
-    </script>
   </body>
 </html>

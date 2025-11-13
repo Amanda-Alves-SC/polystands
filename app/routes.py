@@ -41,6 +41,21 @@ def consulta():
         return redirect('/login')
     return render_template('consulta.html')
 
+@app.route('/stands')
+def stands():
+    google_maps_api_key = key
+    return render_template("stands.html", key=google_maps_api_key)
+
+@app.route('/cenografia')
+def cenografia():
+    google_maps_api_key = key
+    return render_template('cenografia.html', key=google_maps_api_key)
+
+@app.route('/quiosques')
+def quiosques():
+    google_maps_api_key = key
+    return render_template('quiosques.html', key=google_maps_api_key)
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     connection = mysql.connector.connect(**config)
@@ -75,74 +90,75 @@ def agendamento():
          if request.method == 'POST':
             nome = request.form.get('nome')
             telefone = request.form.get('telefone')
-            email = request.form.get('email')
+            email_cliente = request.form.get('email_cliente')
             data = request.form.get('data')
             aceite_termo = request.form.get('aceite_termo')
 
             #CAMPOS BRIEFING STEP1
-            Endereco = request.form.get('Endereco')
-            Razao_social = request.form.get('Razao_social')
-            Nome_Fantasia = request.form.get('Nome_Fantasia')
-            Site = request.form.get('Site')
+            endereco = request.form.get('Endereco')
+            razao_social = request.form.get('Razao_social')
+            nome_fantasia = request.form.get('Nome_Fantasia')
+            site = request.form.get('Site')
             data_entrega = request.form.get('data_entrega')
-            Nome_Responsavel = request.form.get('Nome_Responsavel')
+            nome_responsavel = request.form.get('Nome_Responsavel')
             telefone_responsavel = request.form.get('telefone_responsavel')
-            Email = request.form.get('Email')
-            Evento = request.form.get('Evento')
-            Local = request.form.get('Local')
-            Stand =  request.form.get('Stand')
+            email_empresa = request.form.get('Email')            
+            evento = request.form.get('Evento')
+            local = request.form.get('Local')
+            stand =  request.form.get('Stand')
             data_evento = request.form.get('data_evento')
-            Informacoes_adicionas = request.form.get('Informacoes_adicionas')
+            informacoes_adicionas = request.form.get('Informacoes_adicionas')
             #STEP2
-            Valor_verba = request.form.get('Valor_verba')
-            Contato = request.form.get('Contato')
+            valor_verba = request.form.get('Valor_verba')
+            contato = request.form.get('Contato')
             data_atual = request.form.get('data_atual')
-            Espaço_stand = request.form.get('Espaço stand')
-            medida_Frente = request.form.get('medida_Frente')
-            medida_Fundo = request.form.get('medida_Fundo')
-            Area_total = request.form.get('Area_total')
-            Estilo_construção = request.form.get('Estilo construção')
-            Adicionais = request.form.get('Adicionais')
+            espaco_stand = request.form.get('espaco_stand')
+            medida_frente = request.form.get('medida_Frente')
+            medida_fundo = request.form.get('medida_Fundo')
+            area_total = request.form.get('Area_total')
+            estilo_construcao = request.form.get('estilo_construcao')
+            adicionais = request.form.get('Adicionais')
             cor_mdf = request.form.get('cor_mdf_input')
             cor_forracao = request.form.get('cor_forracao')
             sala = request.form.get('sala')
-            Área_exposição = request.form.get('Área de exposição')
-            Cores_empresa = request.form.get('Cores_empresa')
+            area_exposicao = request.form.get('area_exposicao')
+            cores_empresa = request.form.get('Cores_empresa')
             produtos = request.form.get('produtos')
-            listaMobiliario = request.form.getlist('listaMobiliario')
+            listamobiliario = request.form.getlist('listaMobiliario')
             # Transformar lista de mobiliário em string com quebras de linha
-            listaMobiliario_str = "\n".join(listaMobiliario) if listaMobiliario else ""
+            listamobiliario_str = "\n".join(listamobiliario) if listamobiliario else ""
 
             campos = {
-                "Endereço": Endereco,
-                "Razão Social": Razao_social,
-                "Nome Fantasia": Nome_Fantasia,
+                "Endereço": endereco,
+                "Razão Social": razao_social,
+                "Nome Fantasia": nome_fantasia,
                 "Data de Entrega": data_entrega,
-                "Nome do Responsável": Nome_Responsavel,
+                "Nome do Responsável": nome_responsavel,
                 "Telefone do Responsável": telefone_responsavel,
-                "Email": Email,
-                "Site": Site+ "\n",
-                "Evento": Evento,
-                "Local": Local,
-                "Stand": Stand,
-                "Valor da verba": Valor_verba,
+                "Email": email_empresa,
+                "Email do cliente": email_cliente,
+                "Site": site,
+                "Evento": evento,
+                "Local": local,
+                "Stand": stand,
+                "Valor da verba": valor_verba,
                 "Data do Evento": data_evento,
-                "Informações adicionais": Informacoes_adicionas,
-                "Contato": Contato,
-                "Data atual": data_atual+ "\n",
-                "Espaço stand": Espaço_stand,
-                "Estilo construção": Estilo_construção, 
-                "Medida Frente": medida_Frente,
-                "Medida Fundo": medida_Fundo,
-                "Área Total": Area_total+ "\n",
-                "Adicionais": Adicionais,
+                "Informações adicionais": informacoes_adicionas,
+                "Contato": contato,
+                "Data atual": data_atual,
+                "Espaço stand": espaco_stand,
+                "Estilo construção": estilo_construcao, 
+                "Medida Frente": medida_frente,
+                "Medida Fundo": medida_fundo,
+                "Área Total": area_total,
+                "Adicionais": adicionais,
                 "Cor MDF": cor_mdf,
                 "Cor Forração": cor_forracao,
                 "Sala": sala,
-                "Área de exposição": Área_exposição,
-                "Cores da Empresa": Cores_empresa,
+                "Área de exposição": area_exposicao,
+                "Cores da Empresa": cores_empresa,
                 "Produtos": produtos,
-                "Lista de Mobiliário": listaMobiliario_str
+                "Lista de Mobiliário": listamobiliario_str
                 }
 
 
@@ -150,27 +166,21 @@ def agendamento():
             document = Document()
             document.add_heading("Briefing de Agendamento"+"\n", level=1)
 
+            # Adiciona todos os campos no documento
             for chave, valor in campos.items():
-                if valor:  # só adiciona se não for vazio / None
+                if valor:
                     document.add_paragraph(f"{chave}: {valor}")
 
-                # Salvar em memória (não em arquivo físico)
-                doc_io = io.BytesIO()
-                document.save(doc_io)
-                doc_io.seek(0)  # Voltar para o início do arquivo
+            # Depois do loop, cria o arquivo DOCX em memória
+            doc_io = io.BytesIO()
+            document.save(doc_io)
+            doc_io.seek(0)
+            descricao_projeto = doc_io.read()  # aqui sim o documento tem conteúdo
 
+            # Lê o arquivo uploadado
+            doc_briefing = request.files.get('doc_briefing')
+            doc_briefing_data = doc_briefing.read() if doc_briefing else None
 
-
-
-                descricao_projeto = doc_io.read()
-
-
-                
-                doc_briefing = request.files.get('doc_briefing')
-                if doc_briefing:
-                    doc_briefing_data = doc_briefing.read()  # Converte o arquivo para binário
-                else:
-                    doc_briefing_data = None
 
 
 
@@ -182,7 +192,7 @@ def agendamento():
             try:  
                 # Inserção no banco (barbeiro)
                 sql = "INSERT INTO agendamento (nome, telefone,email , data, descricao_projeto, aceite_termo , doc_briefing) VALUES ( %s, %s, %s, %s, %s, %s, %s)"
-                valores = (nome, telefone,email , data, descricao_projeto, aceite_termo, doc_briefing_data)
+                valores = (nome, telefone,email_cliente , data, descricao_projeto, aceite_termo, doc_briefing_data)
                 cursor.execute(sql, valores)
                 connection.commit()
                 
@@ -276,3 +286,71 @@ def download_arquivo(id):
         )
     else:
         return "Arquivo não encontrado", 404
+
+@app.route('/items/<int:id>', methods=['PUT'])
+def update_item(id):
+    try:
+        connection = mysql.connector.connect(**config)
+        cursor = connection.cursor()
+
+        # Verifica se o registro existe
+        cursor.execute("SELECT id FROM agendamento WHERE id = %s", (id,))
+        resultado = cursor.fetchone()
+        if not resultado:
+            return jsonify({"message": "registro não encontrado"}), 404
+
+        # Recebe os dados do JSON enviado pelo JS
+        data = request.get_json()
+        nome = data.get("nome")
+        email = data.get("email")
+        telefone = data.get("telefone")
+        data_evento = data.get("data")  # opcional
+
+        # Atualiza o registro
+        cursor.execute("""
+            UPDATE agendamento
+            SET nome = %s, email = %s, telefone = %s, data = %s
+            WHERE id = %s
+        """, (nome, email, telefone, data_evento, id))
+
+        connection.commit()
+
+        return jsonify({"message": "registro atualizado com sucesso"})
+
+    except mysql.connector.Error as err:
+        return jsonify({"message": f"Erro: {err}"}), 500
+
+    finally:
+        cursor.close()
+        connection.close()
+
+
+
+
+@app.route('/items/<int:id>', methods=['DELETE'])
+def delete_item(id):
+    try:
+        connection = mysql.connector.connect(**config)
+        cursor = connection.cursor()
+
+        # Verifica se o registro existe
+        cursor.execute("SELECT id FROM agendamento WHERE id = %s", (id,))
+        resultado = cursor.fetchone()
+        if not resultado:
+            return jsonify({"message": "registro não encontrado"}), 404
+
+        # Deleta o registro
+        cursor.execute("DELETE FROM agendamento WHERE id = %s", (id,))
+        connection.commit()
+
+        return jsonify({"message": "registro deletado com sucesso"})
+
+    except mysql.connector.Error as err:
+        return jsonify({"message": f"Erro: {err}"}), 500
+
+    finally:
+        cursor.close()
+        connection.close()
+
+
+

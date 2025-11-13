@@ -1,82 +1,215 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Consulta Agendamentos</title>
-    
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='img/logo_poly.png') }}"
+      type="image/png"
+    />
+
     <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
     <!-- CSS customizado -->
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/consulta.css') }}">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='css/consulta.css') }}"
+    />
+  </head>
+  <body>
     <!-- Navbar -->
     <nav class="faixa navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="home">
-                <img src="{{ url_for('static', filename='img/logo_poly.png') }}" alt="Logo" height="40">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+      <div class="container-fluid">
+        <a class="navbar-brand" href="home">
+          <img
+            src="{{ url_for('static', filename='img/logo_poly.png') }}"
+            alt="Logo"
+            height="40"
+          />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Alternar navegação"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a href="home" class="nav-link text-right"><button class="btn btn-warning">Home</button></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="agendamento" class="nav-link text-right"><button class="btn btn-warning">Agendar</button></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="consulta" class="nav-link text-right"><button class="btn btn-warning">Consulta</button></a>
-                    </li>
-                </ul>
-            </div>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a href="home" class="nav-link text-right"
+                ><button class="btn btn-warning">Home</button></a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="agendamento" class="nav-link text-right"
+                ><button class="btn btn-warning">Agendar</button></a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="consulta" class="nav-link text-right"
+                ><button class="btn btn-warning">Consulta</button></a
+              >
+            </li>
+          </ul>
         </div>
+      </div>
     </nav>
 
-    <!-- Conteúdo principal -->
-    <div class="container mt-5 pt-5 d-flex flex-column align-items-center justify-content-center">
-        <!-- Filtros -->
-        <div class="row mb-3">
-            <div class="col-12 col-md-6 col-lg-4 mb-2">
-                <input type="text" id="searchInput" class="form-control" placeholder="Pesquisar...">
-            </div>
-            <div class="col-6 col-md-3 col-lg-2 mb-2">
-                <input type="date" id="startDate" class="form-control" placeholder="Data Inicial">
-            </div>
-            <div class="col-6 col-md-3 col-lg-2 mb-2">
-                <input type="date" id="endDate" class="form-control" placeholder="Data Final">
-            </div>
-            <div class="col-12 col-md-12 col-lg-4 mb-2">
-                <button onclick="filtrarTabela()" class="filtrar btn btn-primary btn-block">Filtrar</button>
-            </div>
+    <!-- Modal de edição -->
+    <div
+      class="modal fade"
+      id="editModal"
+      tabindex="-1"
+      aria-labelledby="editModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editModalLabel">Editar Agendamento</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Fechar"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="editForm">
+              <input type="hidden" id="editId" />
+              <div class="form-group">
+                <label for="editNome">Nome</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editNome"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="editEmail">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="editEmail"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="editTelefone">Telefone</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editTelefone"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="editData">Data</label>
+                <input type="date" class="form-control" id="editData" />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Cancelar
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="salvarEdicao()"
+            >
+              Salvar
+            </button>
+          </div>
         </div>
+      </div>
+    </div>
 
-        <!-- Tabela responsiva -->
-        <div class="table-responsive">
-            <table class="table table-striped table-bordered table-hover">
-                <thead class="table-container">
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Telefone</th>
-                        <th>Email</th>
-                        <th>Data</th>
-                        <th>Briefing</th>
-                        <th>Doc Briefing</th>
-                        <th>Permissão de uso de dados</th>
-                    </tr>
-                </thead>
-                <tbody id="tabela-agendamentos">
-                    <!-- Dados serão inseridos pelo JS -->
-                </tbody>
-            </table>
+    <!-- Conteúdo principal -->
+    <div
+      class="container mt-5 pt-5 d-flex flex-column align-items-center justify-content-center"
+    >
+      <!-- Filtros -->
+      <div class="row mb-3">
+        <div class="col-12 col-md-6 col-lg-4 mb-2">
+          <input
+            type="text"
+            id="searchInput"
+            class="form-control"
+            placeholder="Pesquisar..."
+          />
         </div>
+        <div class="col-6 col-md-3 col-lg-2 mb-2">
+          <input
+            type="date"
+            id="startDate"
+            class="form-control"
+            placeholder="Data Inicial"
+          />
+        </div>
+        <div class="col-6 col-md-3 col-lg-2 mb-2">
+          <input
+            type="date"
+            id="endDate"
+            class="form-control"
+            placeholder="Data Final"
+          />
+        </div>
+        <div class="col-12 col-md-12 col-lg-4 mb-2">
+          <button
+            onclick="filtrarTabela()"
+            class="filtrar btn btn-primary btn-block"
+          >
+            Filtrar
+          </button>
+        </div>
+      </div>
+
+      <!-- Tabela responsiva -->
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+          <thead class="table-container">
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Telefone</th>
+              <th>Email</th>
+              <th>Data</th>
+              <th>Briefing</th>
+              <th>Doc Briefing</th>
+              <th>Permissão de uso de dados</th>
+              <th>Apagar</th>
+              <th>Atualizar</th>
+            </tr>
+          </thead>
+          <tbody id="tabela-agendamentos">
+            <!-- Dados serão inseridos pelo JS -->
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <!-- JS -->
@@ -85,68 +218,149 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
-        async function carregarAgendamentos() {
-            const resposta = await fetch('/api/agendamentos');
-            const agendamentos = await resposta.json();
+      async function carregarAgendamentos() {
+        const resposta = await fetch("/api/agendamentos");
+        const agendamentos = await resposta.json();
 
-            const tabela = document.getElementById('tabela-agendamentos');
-            tabela.innerHTML = '';
+        const tabela = document.getElementById("tabela-agendamentos");
+        tabela.innerHTML = "";
 
-            agendamentos.forEach(ag => {
-                const linha = `<tr>
+        agendamentos.forEach((ag) => {
+          const linha = `<tr>
                     <td>${ag.id}</td>
                     <td>${ag.nome}</td>
                     <td>${ag.telefone}</td>
                     <td>${ag.email}</td>
                     <td class="data">${ag.data}</td>
-                    <td>${ag.descricao_projeto ? `<a href="/download_projeto/${ag.id}" target="_blank" class="btn btn-sm btn-outline-primary">Baixar Projeto</a>` : 'Nenhum arquivo'}</td>
-                    <td>${ag.doc_briefing ? `<a href="/download/${ag.id}" target="_blank" class="btn btn-sm btn-outline-primary">Baixar</a>` : 'Nenhum arquivo'}</td>
+                    <td>${
+                      ag.descricao_projeto
+                        ? `<a href="/download_projeto/${ag.id}" target="_blank" class="btn btn-sm btn-outline-primary">Baixar Projeto</a>`
+                        : "Nenhum arquivo"
+                    }</td>
+                    <td>${
+                      ag.doc_briefing
+                        ? `<a href="/download/${ag.id}" target="_blank" class="btn btn-sm btn-outline-primary">Baixar</a>`
+                        : "Nenhum arquivo"
+                    }</td>
                     <td>${ag.aceite_termo}</td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-danger" onclick="deletarAgendamento(${
+                          ag.id
+                        })">
+                            Deletar
+                        </button>
+                    </td>
+                
+                    <td>
+                        <button class="btn btn-sm btn-outline-success" onclick="abrirEdicao(${
+                          ag.id
+                        }, '${ag.nome}', '${ag.email}', '${ag.telefone}', '${
+            ag.data
+          }')">
+                            Editar
+                        </button>
+                    </td>
+
                 </tr>`;
-                tabela.innerHTML += linha;
-            });
-        }
+          tabela.innerHTML += linha;
+        });
+      }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            carregarAgendamentos();
+      document.addEventListener("DOMContentLoaded", function () {
+        carregarAgendamentos();
 
-            // Filtro de pesquisa
-            document.getElementById("searchInput").addEventListener("keyup", filtrarTabela);
-            document.getElementById("startDate").addEventListener("change", filtrarTabela);
-            document.getElementById("endDate").addEventListener("change", filtrarTabela);
+        // Filtro de pesquisa
+        document
+          .getElementById("searchInput")
+          .addEventListener("keyup", filtrarTabela);
+        document
+          .getElementById("startDate")
+          .addEventListener("change", filtrarTabela);
+        document
+          .getElementById("endDate")
+          .addEventListener("change", filtrarTabela);
+      });
+
+      async function deletarAgendamento(id) {
+        if (!confirm("Deseja realmente deletar este registro?")) return;
+
+        const resposta = await fetch(`/items/${id}`, { method: "DELETE" });
+        const resultado = await resposta.json();
+
+        alert(resultado.message);
+
+        // Recarrega a tabela após deletar
+        carregarAgendamentos();
+      }
+
+      function abrirEdicao(id, nome, email, telefone, data) {
+        document.getElementById("editId").value = id;
+        document.getElementById("editNome").value = nome;
+        document.getElementById("editEmail").value = email;
+        document.getElementById("editTelefone").value = telefone;
+        document.getElementById("editData").value = data
+          .split("/")
+          .reverse()
+          .join("-"); // converte dd/mm/yyyy → yyyy-mm-dd
+
+        $("#editModal").modal("show"); // abre o modal
+      }
+
+      async function salvarEdicao() {
+        const id = document.getElementById("editId").value;
+        const nome = document.getElementById("editNome").value;
+        const email = document.getElementById("editEmail").value;
+        const telefone = document.getElementById("editTelefone").value;
+        const data = document.getElementById("editData").value;
+
+        const resposta = await fetch(`/items/${id}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ nome, email, telefone, data }),
         });
 
-        function filtrarTabela() {
-            const termoPesquisa = document.getElementById("searchInput").value.toLowerCase();
-            const dataInicial = document.getElementById("startDate").value;
-            const dataFinal = document.getElementById("endDate").value;
+        const resultado = await resposta.json();
+        alert(resultado.message);
 
-            const linhas = document.querySelectorAll("#tabela-agendamentos tr");
+        $("#editModal").modal("hide"); // fecha o modal
+        carregarAgendamentos(); // recarrega tabela
+      }
 
-            linhas.forEach(linha => {
-                const textoLinha = linha.textContent.toLowerCase();
-                const dataTexto = linha.querySelector(".data").textContent.trim();
-                const dataLinha = formatarData(dataTexto);
+      function filtrarTabela() {
+        const termoPesquisa = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+        const dataInicial = document.getElementById("startDate").value;
+        const dataFinal = document.getElementById("endDate").value;
 
-                const atendeTexto = textoLinha.includes(termoPesquisa);
-                const atendeData = verificarData(dataLinha, dataInicial, dataFinal);
+        const linhas = document.querySelectorAll("#tabela-agendamentos tr");
 
-                linha.style.display = (atendeTexto && atendeData) ? "" : "none";
-            });
-        }
+        linhas.forEach((linha) => {
+          const textoLinha = linha.textContent.toLowerCase();
+          const dataTexto = linha.querySelector(".data").textContent.trim();
+          const dataLinha = formatarData(dataTexto);
 
-        function formatarData(data) {
-            const partes = data.split("/");
-            return partes.length === 3 ? `${partes[2]}-${partes[1]}-${partes[0]}` : "";
-        }
+          const atendeTexto = textoLinha.includes(termoPesquisa);
+          const atendeData = verificarData(dataLinha, dataInicial, dataFinal);
 
-        function verificarData(dataLinha, inicio, fim) {
-            if (!inicio && !fim) return true;
-            if (!dataLinha) return false;
-            if (inicio && dataLinha < inicio) return false;
-            if (fim && dataLinha > fim) return false;
-            return true;
-        }
+          linha.style.display = atendeTexto && atendeData ? "" : "none";
+        });
+      }
+
+      function formatarData(data) {
+        const partes = data.split("/");
+        return partes.length === 3
+          ? `${partes[2]}-${partes[1]}-${partes[0]}`
+          : "";
+      }
+
+      function verificarData(dataLinha, inicio, fim) {
+        if (!inicio && !fim) return true;
+        if (!dataLinha) return false;
+        if (inicio && dataLinha < inicio) return false;
+        if (fim && dataLinha > fim) return false;
+        return true;
+      }
     </script>
-</body>
+  </body>
 </html>

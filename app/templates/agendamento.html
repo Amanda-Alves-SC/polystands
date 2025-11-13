@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='img/logo_poly.png') }}" type="image/png">
+
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/agendamento.css') }}">
     <!-- SweetAlert2 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
@@ -86,7 +88,7 @@
               <div class="row">
                 <div class="form-group col-md-12">
                   <label for="email">Endereço de email</label>
-                  <input type="email" class="form-control" id="email" name="email" placeholder="Seu email">
+                  <input type="email" class="form-control" id="email_cliente" name="email_cliente" placeholder="Seu email">
                 </div>
               </div>
 
@@ -129,7 +131,6 @@
                 <button type="submit" class="btn btn-primary w-100">Enviar</button>
               </div>
             </div>
-            </form>
           </div>
         </div>
       </div>
@@ -252,6 +253,7 @@
               <label for="Contato">Contato</label>
               <input type="text" id="Contato" name="Contato"style="margin-left: 5px;" placeholder="(11) 9 0000-0000">
             </div>
+          </div>
 
             <div class="form-group">
               <div class="input-group date" data-date-format="dd/mm/yyyy">
@@ -262,32 +264,31 @@
                 </div>
               </div>
             </div>
-          </div>
 
           <h3 style="margin-left: 5px;">Espaço do stand</h3>
-          <div class="Espaco_stand" name="Espaço stand">
+          <div class="Espaco_stand" name="espaco_stand">
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="Espaço stand" id="Ilha" value="Ilha">
+              <input class="form-check-input" type="radio" name="espaco_stand" id="Ilha" value="Ilha">
               <label class="form-check-label" for="exampleRadios1">Ilha</label>
             </div>
 
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="Espaço stand" id="ponto_ilha" value="Ponto ilha">
+              <input class="form-check-input" type="radio" name="espaco_stand" id="ponto_ilha" value="Ponto ilha">
               <label class="form-check-label" for="ponto_ilha">Ponto</label>
             </div>
 
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="Espaço stand" id="Esquina" value="Esquina">
+              <input class="form-check-input" type="radio" name="espaco_stand" id="Esquina" value="Esquina">
               <label class="form-check-label" for="Esquina">Esquina</label>
             </div>
 
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="Espaço stand" id="Meio/Box" value="Meio/Box" >
+              <input class="form-check-input" type="radio" name="espaco_stand" id="Meio/Box" value="Meio/Box" >
               <label class="form-check-label" for="Meio/Box">Meio/Box</label>
             </div>
 
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="Espaço stand" id="Passante" value="Passante">
+              <input class="form-check-input" type="radio" name="espaco_stand" id="Passante" value="Passante">
               <label class="form-check-label" for="Passante">Passante</label>
             </div>
           </div>
@@ -313,15 +314,15 @@
 
 
           <h3 style="margin-left: 5px;">Estilo da construção</h3>
-          <div class="Estilo_construcao" name="Estilo construção">
+          <div class="Estilo_construcao" name="estilo_construcao">
 
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="Estilo construção" value="Construido" id="Construido" placeholder="Construido" >
+              <input class="form-check-input" type="radio" name="estilo_construcao" value="Construido" id="Construido" placeholder="Construido" >
               <label class="form-check-label" for="Construido">Construído</label>
             </div>
 
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="Estilo construção" value="Especial" id="Especial" placeholder="Especial">
+              <input class="form-check-input" type="radio" name="estilo_construcao" value="Especial" id="Especial" placeholder="Especial">
               <label class="form-check-label" for="Especial">Especial</label>
             </div>
           </div>
@@ -398,54 +399,50 @@
             </div>
                 
               <h3 style="margin-left: 5px;">Área de exposição</h3>
-              <div class="exposicao" name="Área de exposição">
+              <div class="exposicao">
                 <div class="exposicao1">
-                  <div>
-                  <div class="form-check form-check-inline"></div>
-                  <input class="form-check-input" type="radio" name="Área de exposição" id="Vitrines" value="Vitrines" placeholder="Vitrines">
-                  <label class="form-check-label" for="Vitrines">Vitrines</label>
+
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="area_exposicao" id="Vitrines" value="Vitrines">
+                    <label class="form-check-label" for="Vitrines">Vitrines</label>
                   </div>
-        
-                  <div>
-                    <div class="form-check form-check-inline"></div>
-                    <input class="form-check-input" type="radio" name="Área de exposição" id="Prateleiras" value="Prateleiras" placeholder="Prateleiras">
+
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="area_exposicao" id="Prateleiras" value="Prateleiras">
                     <label class="form-check-label" for="Prateleiras">Prateleiras</label>
                   </div>
 
-                  <div>
-                    <div class="form-check form-check-inline"></div>
-                    <input class="form-check-input" type="radio" name="Área de exposição" id="Balcao" value="Balcão" placeholder="Balcao">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="area_exposicao" id="Balcao" value="Balcão">
                     <label class="form-check-label" for="Balcao">Balcão</label>
                   </div>
 
-                  <div>
-                    <div class="form-check form-check-inline"></div>
-                    <input class="form-check-input" type="radio" name="Área de exposição" id="Balcao_vitrine" value="Balcão Vitrine" placeholder="Balcao_vitrine">
-                    <label class="form-check-label" for="Balcao_vitrine">Balcão Vitrine</label>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="area_exposicao" id="Balcao_vitrine" value="Balcão vitrine">
+                    <label class="form-check-label" for="Balcao_vitrine">Balcão vitrine</label>
                   </div>
-
                 </div>
-                  
+
                 <div class="exposicao2">
-                  <div>
-                    <div class="form-check form-check-inline"></div>
-                    <input class="form-check-input" type="radio" name="Área de exposição" id="Display" value="Display" placeholder="Display">
+
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="area_exposicao" id="Display" value="Display">
                     <label class="form-check-label" for="Display">Display</label>
                   </div>
-        
-                  <div>
-                    <div class="form-check form-check-inline"></div>
-                    <input class="form-check-input" type="radio" name="Área de exposição" id="Bancada" value="Bancada" placeholder="Bancada">
+
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="area_exposicao" id="Bancada" value="Bancada">
                     <label class="form-check-label" for="Bancada">Bancada</label>
                   </div>
 
-                  <div>
-                    <div class="form-check form-check-inline"></div>
-                    <input class="form-check-input" type="radio" name="Área de exposição" id="Nicho" value="Nicho" placeholder="Nicho">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="area_exposicao" id="Nicho" value="Nicho">
                     <label class="form-check-label" for="Nicho">Nicho</label>
                   </div>
+
                 </div>
               </div>
+
 
               <div class="form-group">
               <label for="Cores_empresa">Cores da empresa</label>
@@ -503,16 +500,6 @@
     $('.money2').mask('000.000.000.000.000,00', {reverse: true});
   });
 
-  $(document).ready(function(){
-    $('#Email').on('blur', function(){
-      var email = $(this).val();
-      var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if(!regex.test(email)){
-        alert("Por favor, insira um email válido!");
-        $(this).focus();
-      }
-    });
-  });
   </script>
 
 

@@ -1,0 +1,173 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.774), rgba(0, 0, 0, 0.774)),
+    url("../img/teste_home.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: white;
+  font-family: sans-serif;
+  min-height: 100vh;
+}
+
+/* Navbar */
+.navbar-toggler {
+  border: none;
+}
+
+.nav-link button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 8px 20px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.nav-link button:hover {
+  background-color: rgba(46, 46, 46, 0.5);
+}
+
+/* Ícone hambúrguer */
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-width='2' stroke-linecap='round' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Seção apresentação */
+.apresentacao {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 100px;
+  padding: 0 40px;
+  animation-duration: 3s;
+  animation-name: slidein;
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+@keyframes line_grow {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 80%;
+  }
+}
+
+/* Textos */
+.Quiosques h1 {
+  font-size: 60px;
+}
+
+.Quiosques p {
+  color: rgb(216, 212, 212);
+  font-size: 22px;
+}
+
+/* Imagem principal */
+.apresentacao img {
+  border-radius: 10px;
+  max-width: 450px;
+  width: 100%;
+}
+
+/* Linha divisória */
+.linha-visual {
+  width: 80%;
+  height: 2px;
+  background-color: rgb(119, 116, 116);
+  margin: 70px auto;
+  animation-name: line_grow;
+  animation-duration: 3s;
+}
+
+.info_linha {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Contatos */
+.infos {
+  display: flex;
+  justify-content: space-around;
+  align-items: start;
+  padding: 0 50px;
+  flex-wrap: wrap;
+}
+
+.contatos {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.logo-contatos,
+.whatsapp,
+.contato_email {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+gmp-map {
+  width: 350px;
+  height: 260px;
+  border-radius: 10px;
+}
+
+/* 💡 Responsividade melhorada */
+@media (max-width: 768px) {
+  .apresentacao {
+    flex-direction: column;
+    text-align: center;
+    padding: 0 15px;
+  }
+
+  .Quiosques h1 {
+    font-size: 40px;
+  }
+
+  .Quiosques p {
+    font-size: 18px;
+  }
+
+  .infos {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 15px;
+    text-align: center;
+  }
+
+  gmp-map {
+    width: 300px;
+  }
+}
+
+@media (max-width: 420px) {
+  .Quiosques h1 {
+    font-size: 32px;
+  }
+
+  .Quiosques p {
+    font-size: 16px;
+  }
+
+  gmp-map {
+    width: 260px;
+  }
+}
